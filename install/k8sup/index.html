@@ -1,0 +1,700 @@
+
+
+
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      <meta http-equiv="x-ua-compatible" content="ie=edge">
+      
+      
+        <link rel="canonical" href="https://ciscoai.github.io/starter-pack/install/k8sup/">
+      
+      
+      
+        <meta name="lang:clipboard.copy" content="Copy to clipboard">
+      
+        <meta name="lang:clipboard.copied" content="Copied to clipboard">
+      
+        <meta name="lang:search.language" content="en">
+      
+        <meta name="lang:search.pipeline.stopwords" content="True">
+      
+        <meta name="lang:search.pipeline.trimmer" content="True">
+      
+        <meta name="lang:search.result.none" content="No matching documents">
+      
+        <meta name="lang:search.result.one" content="1 matching document">
+      
+        <meta name="lang:search.result.other" content="# matching documents">
+      
+        <meta name="lang:search.tokenizer" content="[\s\-]+">
+      
+      <link rel="shortcut icon" href="../../assets/images/favicon.ico">
+      <meta name="generator" content="mkdocs-1.1, mkdocs-material-4.6.3">
+    
+    
+      
+        <title>Installing Prerequisites - Cisco Kubeflow Starter Pack</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../assets/stylesheets/application.adb8469c.css">
+      
+        <link rel="stylesheet" href="../../assets/stylesheets/application-palette.a8b3c06d.css">
+      
+      
+        
+        
+        <meta name="theme-color" content="#2196f3">
+      
+    
+    
+      <script src="../../assets/javascripts/modernizr.86422ebf.js"></script>
+    
+    
+      
+        <link href="https://fonts.gstatic.com" rel="preconnect" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Circular:300,400,400i,700%7CInconsolata&display=fallback">
+        <style>body,input{font-family:"Circular","Helvetica Neue",Helvetica,Arial,sans-serif}code,kbd,pre{font-family:"Inconsolata","Courier New",Courier,monospace}</style>
+      
+    
+    <link rel="stylesheet" href="../../assets/fonts/material-icons.css">
+    
+    
+      <link rel="stylesheet" href="../../assets/stylesheets/circular.css">
+    
+    
+      
+    
+    
+  </head>
+  
+    
+    
+    <body dir="ltr" data-md-color-primary="blue" data-md-color-accent="blue">
+  
+    <svg class="md-svg">
+      <defs>
+        
+        
+          <svg xmlns="http://www.w3.org/2000/svg" width="416" height="448" viewBox="0 0 416 448" id="__github"><path fill="currentColor" d="M160 304q0 10-3.125 20.5t-10.75 19T128 352t-18.125-8.5-10.75-19T96 304t3.125-20.5 10.75-19T128 256t18.125 8.5 10.75 19T160 304zm160 0q0 10-3.125 20.5t-10.75 19T288 352t-18.125-8.5-10.75-19T256 304t3.125-20.5 10.75-19T288 256t18.125 8.5 10.75 19T320 304zm40 0q0-30-17.25-51T296 232q-10.25 0-48.75 5.25Q229.5 240 208 240t-39.25-2.75Q130.75 232 120 232q-29.5 0-46.75 21T56 304q0 22 8 38.375t20.25 25.75 30.5 15 35 7.375 37.25 1.75h42q20.5 0 37.25-1.75t35-7.375 30.5-15 20.25-25.75T360 304zm56-44q0 51.75-15.25 82.75-9.5 19.25-26.375 33.25t-35.25 21.5-42.5 11.875-42.875 5.5T212 416q-19.5 0-35.5-.75t-36.875-3.125-38.125-7.5-34.25-12.875T37 371.5t-21.5-28.75Q0 312 0 260q0-59.25 34-99-6.75-20.5-6.75-42.5 0-29 12.75-54.5 27 0 47.5 9.875t47.25 30.875Q171.5 96 212 96q37 0 70 8 26.25-20.5 46.75-30.25T376 64q12.75 25.5 12.75 54.5 0 21.75-6.75 42 34 40 34 99.5z"/></svg>
+        
+      </defs>
+    </svg>
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" data-md-component="overlay" for="__drawer"></label>
+    
+      <a href="#installing-prerequisites" tabindex="0" class="md-skip">
+        Skip to content
+      </a>
+    
+    
+      <header class="md-header" data-md-component="header">
+  <nav class="md-header-nav md-grid">
+    <div class="md-flex">
+      <div class="md-flex__cell md-flex__cell--shrink">
+        <a href="https://ciscoai.github.io/starter-pack" title="Cisco Kubeflow Starter Pack" aria-label="Cisco Kubeflow Starter Pack" class="md-header-nav__button md-logo">
+          
+            <img alt="logo" src="../../assets/images/logo.svg" width="24" height="24">
+          
+        </a>
+      </div>
+      <div class="md-flex__cell md-flex__cell--shrink">
+        <label class="md-icon md-icon--menu md-header-nav__button" for="__drawer"></label>
+      </div>
+      <div class="md-flex__cell md-flex__cell--stretch">
+        <div class="md-flex__ellipsis md-header-nav__title" data-md-component="title">
+          
+            <span class="md-header-nav__topic">
+              Cisco Kubeflow Starter Pack
+            </span>
+            <span class="md-header-nav__topic">
+              
+                Installing Prerequisites
+              
+            </span>
+          
+        </div>
+      </div>
+      <div class="md-flex__cell md-flex__cell--shrink">
+        
+      </div>
+      
+        <div class="md-flex__cell md-flex__cell--shrink">
+          <div class="md-header-nav__source">
+            
+
+
+  
+
+<a href="https://github.com/CiscoAI/cisco-kubeflow-starter-pack/" title="Go to repository" class="md-source" data-md-source="github">
+  
+    <div class="md-source__icon">
+      <svg viewBox="0 0 24 24" width="24" height="24">
+        <use xlink:href="#__github" width="24" height="24"></use>
+      </svg>
+    </div>
+  
+  <div class="md-source__repository">
+    GitHub
+  </div>
+</a>
+          </div>
+        </div>
+      
+    </div>
+  </nav>
+</header>
+    
+    <div class="md-container">
+      
+        
+      
+      
+      <main class="md-main" role="main">
+        <div class="md-main__inner md-grid" data-md-component="container">
+          
+            
+              <div class="md-sidebar md-sidebar--primary" data-md-component="navigation">
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    <nav class="md-nav md-nav--primary" data-md-level="0">
+  <label class="md-nav__title md-nav__title--site" for="__drawer">
+    <a href="https://ciscoai.github.io/starter-pack" title="Cisco Kubeflow Starter Pack" class="md-nav__button md-logo">
+      
+        <img alt="logo" src="../../assets/images/logo.svg" width="48" height="48">
+      
+    </a>
+    Cisco Kubeflow Starter Pack
+  </label>
+  
+    <div class="md-nav__source">
+      
+
+
+  
+
+<a href="https://github.com/CiscoAI/cisco-kubeflow-starter-pack/" title="Go to repository" class="md-source" data-md-source="github">
+  
+    <div class="md-source__icon">
+      <svg viewBox="0 0 24 24" width="24" height="24">
+        <use xlink:href="#__github" width="24" height="24"></use>
+      </svg>
+    </div>
+  
+  <div class="md-source__repository">
+    GitHub
+  </div>
+</a>
+    </div>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../.." title="Intro" class="md-nav__link">
+      Intro
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../" title="Kubeflow Install" class="md-nav__link">
+      Kubeflow Install
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item md-nav__item--nested">
+    
+      <input class="md-toggle md-nav__toggle" data-md-toggle="nav-3" type="checkbox" id="nav-3">
+    
+    <label class="md-nav__link" for="nav-3">
+      Apps
+    </label>
+    <nav class="md-nav" data-md-component="collapsible" data-md-level="1">
+      <label class="md-nav__title" for="nav-3">
+        Apps
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../apps/networking/ble-localization/onprem/blerssipipeline/" title="Networking" class="md-nav__link">
+      Networking
+    </a>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="https://github.com/CiscoAI/cisco-kubeflow-starter-pack" title="GitHub Source Code" class="md-nav__link">
+      GitHub Source Code
+    </a>
+  </li>
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="toc">
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+<nav class="md-nav md-nav--secondary">
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">Table of contents</label>
+    <ul class="md-nav__list" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#docker-setup" class="md-nav__link">
+     Docker setup
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#kubernetes-setup" class="md-nav__link">
+     Kubernetes setup
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#create-a-single-node-kubernetes-cluster" class="md-nav__link">
+     Create a single node Kubernetes cluster
+  </a>
+  
+    <nav class="md-nav">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#create-cluster-with-kubeadm" class="md-nav__link">
+     Create cluster with kubeadm
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#copy-kubeconfig-into-userspace" class="md-nav__link">
+     Copy KUBECONFIG into userspace
+  </a>
+  
+    <nav class="md-nav">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#check-kubeconfig" class="md-nav__link">
+    Check KUBECONFIG
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#install-cluster-add-ons" class="md-nav__link">
+     Install cluster add-ons
+  </a>
+  
+    <nav class="md-nav">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#calico" class="md-nav__link">
+     Calico
+  </a>
+  
+    <nav class="md-nav">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#taint-master-node-check-calico-pods" class="md-nav__link">
+    Taint master node, check calico pods
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#nvidia-device-plugin" class="md-nav__link">
+     NVIDIA Device Plugin
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#storage-class" class="md-nav__link">
+     Storage Class
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#check-cluster-readiness" class="md-nav__link">
+     Check cluster readiness
+  </a>
+  
+</li>
+      
+      
+      
+      
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          <div class="md-content">
+            <article class="md-content__inner md-typeset">
+              
+                
+                  <a href="https://github.com/CiscoAI/cisco-kubeflow-starter-pack/edit/master/docs/install/k8sup.md" title="Edit this page" class="md-icon md-content__icon">&#xE3C9;</a>
+                
+                
+                <h1 id="installing-prerequisites">Installing Prerequisites<a class="headerlink" href="#installing-prerequisites" title="Permanent link">&para;</a></h1>
+<ul>
+<li><a href="#docker">Docker</a></li>
+<li><a href="#kubernetes">Kubernetes</a></li>
+<li><a href="#k8s-up">Create a Kubernetes cluster</a><ul>
+<li><a href="#kubeadm">Create cluster with kubeadm</a></li>
+<li><a href="#kubeconfig">Set KUBECONFIG</a></li>
+<li><a href="#add-ons">Install cluster add-ons</a><ul>
+<li><a href="#calico">Calico</a></li>
+<li><a href="#nvidia">NVIDIA Device Plugin</a></li>
+<li><a href="#rancher">Storage Class</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><a href="#k8s-ready">Check cluster readiness</a></li>
+</ul>
+<h2 id="docker-setup"><a id=docker></a> Docker setup<a class="headerlink" href="#docker-setup" title="Permanent link">&para;</a></h2>
+<p>Update and install common libraries
+<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span>1
+2
+3
+4
+5
+6
+7</pre></div></td><td class="code"><div class="codehilite"><pre><span></span><code>sudo apt-get update
+sudo apt-get install -y <span class="se">\</span>
+    apt-transport-https <span class="se">\</span>
+    ca-certificates <span class="se">\</span>
+    curl <span class="se">\</span>
+    software-properties-common <span class="se">\</span>
+    gnupg2
+</code></pre></div>
+</td></tr></table></p>
+<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span> 1
+ 2
+ 3
+ 4
+ 5
+ 6
+ 7
+ 8
+ 9
+10
+11
+12
+13
+14
+15</pre></div></td><td class="code"><div class="codehilite"><pre><span></span><code>curl -fsSL https://download.docker.com/linux/ubuntu/gpg <span class="p">|</span> sudo apt-key add -
+
+sudo apt-key fingerprint 0EBFCD88
+<span class="c1"># the output should equal:</span>
+<span class="c1"># 9DC8 5822 9FC7 DD38 854A  E2D8 8D81 803C 0EBF CD88</span>
+
+sudo add-apt-repository <span class="s2">&quot;deb [arch=amd64] https://download.docker.com/linux/ubuntu \</span>
+<span class="s2">    </span><span class="k">$(</span>lsb_release -cs<span class="k">)</span><span class="s2"> stable&quot;</span>
+
+sudo apt-get update
+
+sudo apt-get install -y <span class="se">\</span>
+  containerd.io<span class="o">=</span><span class="m">1</span>.2.10-3 <span class="se">\</span>
+  docker-ce<span class="o">=</span><span class="m">5</span>:19.03.4~3-0~ubuntu-<span class="k">$(</span>lsb_release -cs<span class="k">)</span> <span class="se">\</span>
+  docker-ce-cli<span class="o">=</span><span class="m">5</span>:19.03.4~3-0~ubuntu-<span class="k">$(</span>lsb_release -cs<span class="k">)</span>
+</code></pre></div>
+</td></tr></table>
+
+<p><a href="https://kubernetes.io/docs/setup/production-environment/container-runtimes/#docker">Source</a></p>
+<h2 id="kubernetes-setup"><a id=kubernetes></a> Kubernetes setup<a class="headerlink" href="#kubernetes-setup" title="Permanent link">&para;</a></h2>
+<p>Recommended version is <code>v1.14.10</code> for Kubernetes and <code>v0.7.5</code> for Kubernetes-CNI.
+Please lookup EOL for Kubernetes versions before installing.</p>
+<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span> 1
+ 2
+ 3
+ 4
+ 5
+ 6
+ 7
+ 8
+ 9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21</pre></div></td><td class="code"><div class="codehilite"><pre><span></span><code><span class="c1"># set environment variables for Kubernetes and CNI</span>
+<span class="nb">export</span> <span class="nv">KUBERNETES_VERSION</span><span class="o">=</span><span class="m">1</span>.14.10
+<span class="nb">export</span> <span class="nv">KUBERNETES_CNI</span><span class="o">=</span><span class="m">0</span>.7.5
+
+<span class="c1"># add kubernetes apt packages</span>
+sudo bash -c <span class="s1">&#39;apt-get update &amp;&amp; apt-get install -y apt-transport-https</span>
+<span class="s1">curl -s https://packages.cloud.google.com/apt/doc/apt-key.gpg | apt-key add -</span>
+<span class="s1">cat &lt;&lt;EOF &gt;/etc/apt/sources.list.d/kubernetes.list</span>
+<span class="s1">deb http://apt.kubernetes.io/ kubernetes-xenial main</span>
+<span class="s1">EOF</span>
+<span class="s1">apt-get -y update&#39;</span>
+
+<span class="c1"># install kubernetes packages</span>
+sudo apt-get install -yf <span class="se">\</span>
+  socat <span class="se">\</span>
+  ebtables <span class="se">\</span>
+  apt-transport-https <span class="se">\</span>
+  <span class="nv">kubelet</span><span class="o">=</span><span class="si">${</span><span class="nv">KUBERNETES_VERSION</span><span class="si">}</span>-00 <span class="se">\</span>
+  <span class="nv">kubeadm</span><span class="o">=</span><span class="si">${</span><span class="nv">KUBERNETES_VERSION</span><span class="si">}</span>-00 <span class="se">\</span>
+  kubernetes-cni<span class="o">=</span><span class="si">${</span><span class="nv">KUBERNETES_CNI</span><span class="si">}</span>-00 <span class="se">\</span>
+  <span class="nv">kubectl</span><span class="o">=</span><span class="si">${</span><span class="nv">KUBERNETES_VERSION</span><span class="si">}</span>-00
+</code></pre></div>
+</td></tr></table>
+
+<p><a href="https://kubernetes.io/docs/setup/production-environment/tools/kubeadm/install-kubeadm/">Source</a></p>
+<h2 id="create-a-single-node-kubernetes-cluster"><a id=k8s-up></a> Create a single node Kubernetes cluster<a class="headerlink" href="#create-a-single-node-kubernetes-cluster" title="Permanent link">&para;</a></h2>
+<p>A single node Kubernetes cluster does not have ETCD replication or cluster backup. It is not suitable for production workloads.
+<strong>Recommended</strong>: HA Kubernetes cluster with cluster backup for production.</p>
+<h3 id="create-cluster-with-kubeadm"><a id=kubeadm></a> Create cluster with kubeadm<a class="headerlink" href="#create-cluster-with-kubeadm" title="Permanent link">&para;</a></h3>
+<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span>1
+2
+3
+4
+5
+6
+7
+8</pre></div></td><td class="code"><div class="codehilite"><pre><span></span><code><span class="nv">INGRESS_IP</span><span class="o">=</span>&lt;UCS machine<span class="se">\&#39;</span>s IP&gt;
+sudo systemctl daemon-reload
+sudo systemctl restart docker
+sudo systemctl restart kubelet
+sleep <span class="m">30</span> <span class="c1"># wait for docker, kubelet to restart</span>
+
+sudo swapoff -a
+sudo kubeadm init --pod-network-cidr<span class="o">=</span><span class="m">192</span>.168.0.0/16 --apiserver-advertise-address<span class="o">=</span><span class="si">${</span><span class="nv">INGRESS_IP</span><span class="si">}</span>
+</code></pre></div>
+</td></tr></table>
+
+<h3 id="copy-kubeconfig-into-userspace"><a id=kubeconfig></a> Copy KUBECONFIG into userspace<a class="headerlink" href="#copy-kubeconfig-into-userspace" title="Permanent link">&para;</a></h3>
+<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span>1
+2
+3
+4
+5</pre></div></td><td class="code"><div class="codehilite"><pre><span></span><code>mkdir -p <span class="nv">$HOME</span>/.kube
+sudo cp -f /etc/kubernetes/admin.conf <span class="nv">$HOME</span>/.kube/config
+sudo chown <span class="k">$(</span>id -u<span class="k">)</span>:<span class="k">$(</span>id -g<span class="k">)</span> <span class="nv">$HOME</span>/.kube/config
+
+<span class="nb">export</span> <span class="nv">KUBECONFIG</span><span class="o">=</span><span class="nv">$HOME</span>/.kube/config
+</code></pre></div>
+</td></tr></table>
+
+<h4 id="check-kubeconfig">Check KUBECONFIG<a class="headerlink" href="#check-kubeconfig" title="Permanent link">&para;</a></h4>
+<p><code>kubectl get nodes -o wide</code>
+<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span>1
+2</pre></div></td><td class="code"><div class="codehilite"><pre><span></span><code><span class="n">NAME</span>                   <span class="n">STATUS</span>   <span class="n">ROLES</span>    <span class="n">AGE</span>    <span class="k">VERSION</span>    <span class="n">INTERNAL</span><span class="o">-</span><span class="n">IP</span>     <span class="k">EXTERNAL</span><span class="o">-</span><span class="n">IP</span>   <span class="n">OS</span><span class="o">-</span><span class="n">IMAGE</span>             <span class="n">KERNEL</span><span class="o">-</span><span class="k">VERSION</span>      <span class="n">CONTAINER</span><span class="o">-</span><span class="n">RUNTIME</span>
+<span class="n">ucs</span><span class="o">-</span><span class="n">kubeflow</span>  <span class="k">Not</span> <span class="n">Ready</span>    <span class="n">master</span>   <span class="mi">4</span><span class="n">d2h</span>   <span class="n">v1</span><span class="p">.</span><span class="mi">14</span><span class="p">.</span><span class="mi">10</span>   <span class="mi">10</span><span class="p">.</span><span class="n">x</span><span class="p">.</span><span class="n">x</span><span class="p">.</span><span class="mi">101</span>   <span class="o">&lt;</span><span class="k">none</span><span class="o">&gt;</span>        <span class="n">Ubuntu</span> <span class="mi">18</span><span class="p">.</span><span class="mi">04</span><span class="p">.</span><span class="mi">2</span> <span class="n">LTS</span>   <span class="mi">4</span><span class="p">.</span><span class="mi">15</span><span class="p">.</span><span class="mi">0</span><span class="o">-</span><span class="mi">20</span><span class="o">-</span><span class="n">generic</span>   <span class="n">docker</span><span class="p">:</span><span class="o">//</span><span class="mi">18</span><span class="p">.</span><span class="mi">9</span><span class="p">.</span><span class="mi">3</span>
+</code></pre></div>
+</td></tr></table></p>
+<p><strong>Note:</strong> Master node status becomes Ready after Calico is installed in the next steps.</p>
+<h3 id="install-cluster-add-ons"><a id=add-ons></a> Install cluster add-ons<a class="headerlink" href="#install-cluster-add-ons" title="Permanent link">&para;</a></h3>
+<h4 id="calico"><a id=calico></a> Calico<a class="headerlink" href="#calico" title="Permanent link">&para;</a></h4>
+<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span>1</pre></div></td><td class="code"><div class="codehilite"><pre><span></span><code>kubectl apply -f https://docs.projectcalico.org/v3.11/manifests/calico.yaml
+</code></pre></div>
+</td></tr></table>
+
+<h5 id="taint-master-node-check-calico-pods">Taint master node, check calico pods<a class="headerlink" href="#taint-master-node-check-calico-pods" title="Permanent link">&para;</a></h5>
+<p><table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span>1
+2</pre></div></td><td class="code"><div class="codehilite"><pre><span></span><code><span class="c1"># tainting the master node alows pods to be scheduled on it</span>
+kubectl taint nodes --all node-role.kubernetes.io/master-
+</code></pre></div>
+</td></tr></table>
+Expected output: <br>
+<code>node/ucs-kubeflow untainted</code></p>
+<p>Ensure the coredns, calico and the kube-proxy pods are running.
+<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span>1</pre></div></td><td class="code"><div class="codehilite"><pre><span></span><code>kubectl get pods -n kube-system -w
+</code></pre></div>
+</td></tr></table></p>
+<h4 id="nvidia-device-plugin"><a id=nvidia></a> NVIDIA Device Plugin<a class="headerlink" href="#nvidia-device-plugin" title="Permanent link">&para;</a></h4>
+<p>The NVIDIA GPU device plugin runs as a Kubernetes daemonset and exposes the underlying GPUs as a usable Kubernetes resource.</p>
+<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span>1</pre></div></td><td class="code"><div class="codehilite"><pre><span></span><code>kubectl apply -f https://raw.githubusercontent.com/NVIDIA/k8s-device-plugin/master/nvidia-device-plugin.yml
+</code></pre></div>
+</td></tr></table>
+
+<h4 id="storage-class"><a id=rancher></a> Storage Class<a class="headerlink" href="#storage-class" title="Permanent link">&para;</a></h4>
+<p>The Rancher local-path-provisioner storage class creates host-path mounted persistent-volumes for persistent-volume-claims dynamically. <br>
+<strong>Note:</strong>
+There are security concerns around host-path volumes as they expose the underlying host filesystem to Kubernetes pods and applications. Container breakouts could be dangerous.</p>
+<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span>1
+2
+3
+4</pre></div></td><td class="code"><div class="codehilite"><pre><span></span><code>kubectl apply -f https://raw.githubusercontent.com/rancher/local-path-provisioner/master/deploy/local-path-storage.yaml
+
+<span class="c1"># set local-path to be default storage class</span>
+kubectl patch storageclasses.storage.k8s.io local-path -p <span class="s1">&#39;{&quot;metadata&quot;: {&quot;annotations&quot;:{&quot;storageclass.kubernetes.io/is-default-class&quot;:&quot;true&quot;}}}&#39;</span>
+</code></pre></div>
+</td></tr></table>
+
+<h2 id="check-cluster-readiness"><a id=k8s-ready></a> Check cluster readiness<a class="headerlink" href="#check-cluster-readiness" title="Permanent link">&para;</a></h2>
+<p>Cluster checks:
+- [ ] Kubernetes node is ready<br>
+    * <code>kubectl get nodes -o wide</code></p>
+<p>Expected output:<br>
+<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span>1
+2</pre></div></td><td class="code"><div class="codehilite"><pre><span></span><code><span class="n">NAME</span>                   <span class="n">STATUS</span>   <span class="n">ROLES</span>    <span class="n">AGE</span>    <span class="k">VERSION</span>    <span class="n">INTERNAL</span><span class="o">-</span><span class="n">IP</span>     <span class="k">EXTERNAL</span><span class="o">-</span><span class="n">IP</span>   <span class="n">OS</span><span class="o">-</span><span class="n">IMAGE</span>             <span class="n">KERNEL</span><span class="o">-</span><span class="k">VERSION</span>      <span class="n">CONTAINER</span><span class="o">-</span><span class="n">RUNTIME</span>
+<span class="n">ucs</span><span class="o">-</span><span class="n">kubeflow</span>  <span class="n">Ready</span>    <span class="n">master</span>   <span class="mi">4</span><span class="n">d2h</span>   <span class="n">v1</span><span class="p">.</span><span class="mi">14</span><span class="p">.</span><span class="mi">10</span>   <span class="mi">10</span><span class="p">.</span><span class="n">x</span><span class="p">.</span><span class="n">x</span><span class="p">.</span><span class="mi">101</span>   <span class="o">&lt;</span><span class="k">none</span><span class="o">&gt;</span>        <span class="n">Ubuntu</span> <span class="mi">18</span><span class="p">.</span><span class="mi">04</span><span class="p">.</span><span class="mi">2</span> <span class="n">LTS</span>   <span class="mi">4</span><span class="p">.</span><span class="mi">15</span><span class="p">.</span><span class="mi">0</span><span class="o">-</span><span class="mi">20</span><span class="o">-</span><span class="n">generic</span>   <span class="n">docker</span><span class="p">:</span><span class="o">//</span><span class="mi">18</span><span class="p">.</span><span class="mi">9</span><span class="p">.</span><span class="mi">3</span>
+</code></pre></div>
+</td></tr></table>
+- [ ] Storage Class is running
+    * <code>kubectl get pods -n local-path-storage</code><br></p>
+<p>Expected output:<br>
+<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span>1
+2</pre></div></td><td class="code"><div class="codehilite"><pre><span></span><code><span class="n">NAME</span>                                      <span class="n">READY</span>   <span class="n">STATUS</span>    <span class="n">RESTARTS</span>   <span class="n">AGE</span>
+<span class="k">local</span><span class="o">-</span><span class="n">path</span><span class="o">-</span><span class="n">provisioner</span><span class="o">-</span><span class="mi">74</span><span class="n">c64c9987</span><span class="o">-</span><span class="n">vnh76</span>   <span class="mi">1</span><span class="o">/</span><span class="mi">1</span>     <span class="n">Running</span>   <span class="mi">0</span>          <span class="mi">4</span><span class="n">d2h</span>
+</code></pre></div>
+</td></tr></table>
+- [ ] kube-system pods are running
+    * <code>kubectl get pods -n kube-system</code><br></p>
+<p>Expected output:<br>
+<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span> 1
+ 2
+ 3
+ 4
+ 5
+ 6
+ 7
+ 8
+ 9
+10</pre></div></td><td class="code"><div class="codehilite"><pre><span></span><code><span class="n">calico</span><span class="o">-</span><span class="n">kube</span><span class="o">-</span><span class="n">controllers</span><span class="o">-</span><span class="mi">867</span><span class="n">fbf6cd4</span><span class="o">-</span><span class="n">sxgmw</span>       <span class="mi">1</span><span class="o">/</span><span class="mi">1</span>     <span class="n">Running</span>   <span class="mi">0</span>          <span class="mi">4</span><span class="n">d2h</span>
+<span class="n">calico</span><span class="o">-</span><span class="n">node</span><span class="o">-</span><span class="mi">762</span><span class="n">sx</span>                              <span class="mi">1</span><span class="o">/</span><span class="mi">1</span>     <span class="n">Running</span>   <span class="mi">0</span>          <span class="mi">4</span><span class="n">d2h</span>
+<span class="n">coredns</span><span class="o">-</span><span class="mi">6</span><span class="n">dcc67dcbc</span><span class="o">-</span><span class="mi">8</span><span class="n">hg5d</span>                       <span class="mi">1</span><span class="o">/</span><span class="mi">1</span>     <span class="n">Running</span>   <span class="mi">0</span>          <span class="mi">4</span><span class="n">d2h</span>
+<span class="n">coredns</span><span class="o">-</span><span class="mi">6</span><span class="n">dcc67dcbc</span><span class="o">-</span><span class="n">zj7gn</span>                       <span class="mi">1</span><span class="o">/</span><span class="mi">1</span>     <span class="n">Running</span>   <span class="mi">0</span>          <span class="mi">4</span><span class="n">d2h</span>
+<span class="n">etcd</span><span class="o">-</span><span class="n">ucs</span><span class="o">-</span><span class="n">kubeflow</span>                              <span class="mi">1</span><span class="o">/</span><span class="mi">1</span>     <span class="n">Running</span>   <span class="mi">0</span>          <span class="mi">4</span><span class="n">d2h</span>
+<span class="n">kube</span><span class="o">-</span><span class="n">apiserver</span><span class="o">-</span><span class="n">ucs</span><span class="o">-</span><span class="n">kubeflow</span>                    <span class="mi">1</span><span class="o">/</span><span class="mi">1</span>     <span class="n">Running</span>   <span class="mi">0</span>          <span class="mi">4</span><span class="n">d2h</span>
+<span class="n">kube</span><span class="o">-</span><span class="n">controller</span><span class="o">-</span><span class="n">manager</span><span class="o">-</span><span class="n">ucs</span><span class="o">-</span><span class="n">kubeflow</span>           <span class="mi">1</span><span class="o">/</span><span class="mi">1</span>     <span class="n">Running</span>   <span class="mi">0</span>          <span class="mi">4</span><span class="n">d2h</span>
+<span class="n">kube</span><span class="o">-</span><span class="n">proxy</span><span class="o">-</span><span class="n">c8nrt</span>                               <span class="mi">1</span><span class="o">/</span><span class="mi">1</span>     <span class="n">Running</span>   <span class="mi">0</span>          <span class="mi">4</span><span class="n">d2h</span>
+<span class="n">kube</span><span class="o">-</span><span class="n">scheduler</span><span class="o">-</span><span class="n">ucs</span><span class="o">-</span><span class="n">kubeflow</span>                    <span class="mi">1</span><span class="o">/</span><span class="mi">1</span>     <span class="n">Running</span>   <span class="mi">0</span>          <span class="mi">4</span><span class="n">d2h</span>
+<span class="n">nvidia</span><span class="o">-</span><span class="n">device</span><span class="o">-</span><span class="n">plugin</span><span class="o">-</span><span class="n">daemonset</span><span class="o">-</span><span class="n">xr96d</span>           <span class="mi">1</span><span class="o">/</span><span class="mi">1</span>     <span class="n">Running</span>   <span class="mi">0</span>          <span class="mi">4</span><span class="n">d2h</span>
+</code></pre></div>
+</td></tr></table></p>
+                
+                  
+                
+                
+              
+              
+                
+
+
+              
+            </article>
+          </div>
+        </div>
+      </main>
+      
+        
+<footer class="md-footer">
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-footer-copyright">
+        
+          <div class="md-footer-copyright__highlight">
+            Cisco Systems 2020
+          </div>
+        
+        powered by
+        <a href="https://www.mkdocs.org" target="_blank" rel="noopener">MkDocs</a>
+        and
+        <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+          Material for MkDocs</a>
+      </div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    
+      <script src="../../assets/javascripts/application.c33a9706.js"></script>
+      
+      <script>app.initialize({version:"1.1",url:{base:"../.."}})</script>
+      
+    
+  </body>
+</html>
