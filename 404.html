@@ -31,7 +31,7 @@
       
         <meta name="lang:search.tokenizer" content="[\s\-]+">
       
-      <link rel="shortcut icon" href="/starter-pack/assets/images/favicon.ico">
+      <link rel="shortcut icon" href="/images/favicon.ico">
       <meta name="generator" content="mkdocs-1.1, mkdocs-material-4.6.3">
     
     
@@ -40,9 +40,9 @@
       
     
     
-      <link rel="stylesheet" href="/starter-pack/assets/stylesheets/application.adb8469c.css">
+      <link rel="stylesheet" href="/assets/stylesheets/application.adb8469c.css">
       
-        <link rel="stylesheet" href="/starter-pack/assets/stylesheets/application-palette.a8b3c06d.css">
+        <link rel="stylesheet" href="/assets/stylesheets/application-palette.a8b3c06d.css">
       
       
         
@@ -51,7 +51,7 @@
       
     
     
-      <script src="/starter-pack/assets/javascripts/modernizr.86422ebf.js"></script>
+      <script src="/assets/javascripts/modernizr.86422ebf.js"></script>
     
     
       
@@ -60,12 +60,37 @@
         <style>body,input{font-family:"Circular","Helvetica Neue",Helvetica,Arial,sans-serif}code,kbd,pre{font-family:"Inconsolata","Courier New",Courier,monospace}</style>
       
     
-    <link rel="stylesheet" href="/starter-pack/assets/fonts/material-icons.css">
+    <link rel="stylesheet" href="/assets/fonts/material-icons.css">
     
     
-      <link rel="stylesheet" href="/starter-pack/assets/stylesheets/circular.css">
+      <link rel="stylesheet" href="/assets/stylesheets/circular.css">
     
     
+      
+        
+<script>
+  window.ga = window.ga || function() {
+    (ga.q = ga.q || []).push(arguments)
+  }
+  ga.l = +new Date
+  /* Setup integration and send page view */
+  ga("create", "UA-161751488-1", "auto")
+  ga("set", "anonymizeIp", true)
+  ga("send", "pageview")
+  /* Register handler to log search on blur */
+  document.addEventListener("DOMContentLoaded", () => {
+    if (document.forms.search) {
+      var query = document.forms.search.query
+      query.addEventListener("blur", function() {
+        if (this.value) {
+          var path = document.location.pathname;
+          ga("send", "pageview", path + "?q=" + this.value)
+        }
+      })
+    }
+  })
+</script>
+<script async src="https://www.google-analytics.com/analytics.js"></script>
       
     
     
@@ -92,9 +117,9 @@
   <nav class="md-header-nav md-grid">
     <div class="md-flex">
       <div class="md-flex__cell md-flex__cell--shrink">
-        <a href="https://ciscoai.github.io/starter-pack" title="Cisco Kubeflow Starter Pack" aria-label="Cisco Kubeflow Starter Pack" class="md-header-nav__button md-logo">
+        <a href="/." title="Cisco Kubeflow Starter Pack" aria-label="Cisco Kubeflow Starter Pack" class="md-header-nav__button md-logo">
           
-            <img alt="logo" src="/starter-pack/assets/images/logo.svg" width="24" height="24">
+            <img alt="logo" src="/images/cisco.svg" width="24" height="24">
           
         </a>
       </div>
@@ -135,7 +160,7 @@
     </div>
   
   <div class="md-source__repository">
-    GitHub
+    CiscoAI/cisco-kubeflow-starter-pack
   </div>
 </a>
           </div>
@@ -159,9 +184,9 @@
                   <div class="md-sidebar__inner">
                     <nav class="md-nav md-nav--primary" data-md-level="0">
   <label class="md-nav__title md-nav__title--site" for="__drawer">
-    <a href="https://ciscoai.github.io/starter-pack" title="Cisco Kubeflow Starter Pack" class="md-nav__button md-logo">
+    <a href="/." title="Cisco Kubeflow Starter Pack" class="md-nav__button md-logo">
       
-        <img alt="logo" src="/starter-pack/assets/images/logo.svg" width="48" height="48">
+        <img alt="logo" src="/images/cisco.svg" width="48" height="48">
       
     </a>
     Cisco Kubeflow Starter Pack
@@ -182,7 +207,7 @@
     </div>
   
   <div class="md-source__repository">
-    GitHub
+    CiscoAI/cisco-kubeflow-starter-pack
   </div>
 </a>
     </div>
@@ -195,20 +220,8 @@
 
 
   <li class="md-nav__item">
-    <a href="/starter-pack/." title="Intro" class="md-nav__link">
-      Intro
-    </a>
-  </li>
-
-    
-      
-      
-      
-
-
-  <li class="md-nav__item">
-    <a href="/starter-pack/install/" title="Kubeflow Install" class="md-nav__link">
-      Kubeflow Install
+    <a href="/." title="Home" class="md-nav__link">
+      Home
     </a>
   </li>
 
@@ -220,13 +233,85 @@
 
   <li class="md-nav__item md-nav__item--nested">
     
-      <input class="md-toggle md-nav__toggle" data-md-toggle="nav-3" type="checkbox" id="nav-3">
+      <input class="md-toggle md-nav__toggle" data-md-toggle="nav-2" type="checkbox" id="nav-2">
     
-    <label class="md-nav__link" for="nav-3">
+    <label class="md-nav__link" for="nav-2">
+      Installation
+    </label>
+    <nav class="md-nav" data-md-component="collapsible" data-md-level="1">
+      <label class="md-nav__title" for="nav-2">
+        Installation
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="/install/k8sup/" title="Prerequisites Reference" class="md-nav__link">
+      Prerequisites Reference
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="/install/kfup/" title="Kubeflow" class="md-nav__link">
+      Kubeflow
+    </a>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="/jupyter/createserver/" title="Jupyter Notebook Server" class="md-nav__link">
+      Jupyter Notebook Server
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="/nfs/nfsup/" title="NFS Installation" class="md-nav__link">
+      NFS Installation
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item md-nav__item--nested">
+    
+      <input class="md-toggle md-nav__toggle" data-md-toggle="nav-5" type="checkbox" id="nav-5">
+    
+    <label class="md-nav__link" for="nav-5">
       Apps
     </label>
     <nav class="md-nav" data-md-component="collapsible" data-md-level="1">
-      <label class="md-nav__title" for="nav-3">
+      <label class="md-nav__title" for="nav-5">
         Apps
       </label>
       <ul class="md-nav__list" data-md-scrollfix>
@@ -238,7 +323,7 @@
 
 
   <li class="md-nav__item">
-    <a href="/starter-pack/apps/networking/ble-localization/onprem/blerssipipeline/" title="Networking" class="md-nav__link">
+    <a href="/apps/networking/ble-localization/onprem/blerssipipeline/" title="Networking" class="md-nav__link">
       Networking
     </a>
   </li>
@@ -292,7 +377,7 @@
       <div class="md-footer-copyright">
         
           <div class="md-footer-copyright__highlight">
-            Cisco Systems 2020
+            Copyright &copy; 2020 Cisco Systems
           </div>
         
         powered by
@@ -308,9 +393,9 @@
       
     </div>
     
-      <script src="/starter-pack/assets/javascripts/application.c33a9706.js"></script>
+      <script src="/assets/javascripts/application.c33a9706.js"></script>
       
-      <script>app.initialize({version:"1.1",url:{base:"/starter-pack"}})</script>
+      <script>app.initialize({version:"1.1",url:{base:"/"}})</script>
       
     
   </body>
