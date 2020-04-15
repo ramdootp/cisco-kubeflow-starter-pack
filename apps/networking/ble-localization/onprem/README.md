@@ -21,6 +21,7 @@ locations, with each location being manually captured.
 Each location is usually covered by multiple beacons and all those
 measurements were captured.
 
-There are two possible ways of implementing this application:
-  - [Using Kubeflow pipelines](./pipelines)
-  - [Using Jupyter notebook server from Kubeflow](./notebook)
+There are multiple possible ways of training & deploying the model for this application:
+  - [Using Kubeflow Pipelines](./pipelines)
+  - [Using Kubeflow Jupyter Notebook Server](./notebook)
+  - [Using Kubeflow Fairing](./fairing)
