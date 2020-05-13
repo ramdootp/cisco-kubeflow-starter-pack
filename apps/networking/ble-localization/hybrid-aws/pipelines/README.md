@@ -37,6 +37,8 @@ data:
 
 ## UCS Setup
 
+To install Kubeflow, follow the instructions [here](../../../../../install)
+
 ### Retrieve Ingress IP
 
 For installation, we need to know the external IP of the 'istio-ingressgateway' service. This can be retrieved by the following steps.  
