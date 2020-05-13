@@ -43,30 +43,63 @@ Ensure you have jupyter lab installed on your local machine. And Kubeflow instal
     git clone https://github.com/CiscoAI/cisco-kubeflow-starter-pack cksp
     cd cksp
     cd apps/networking/ble-localization/hybrid-aws/pipelines/
+    
+    
+### Upload Notebook file
 
-Open the `blerssi-aws.ipynb` notebook.
+Upload [blerssi-aws.ipynb](blerssi-aws.ipynb) file in jupyter notebook
+    
+### Run Pipeline
+
+Open the [blerssi-aws.ipynb](blerssi-aws.ipynb) file and run pipeline
+
 Set the input parameters for the pipeline in the first cell of the notebook.
-Here are the parameters and samples for each of them.
 
-> Note! Set the bucket name from the first step
+![BLERSSI Pipeline](./pictures/notebook-sabe-1.PNG)
 
-```
-Parameters:
-[Required]
-bucket_name (string): S3 bucket to be used by the pipeline
-    Sample: "mxnet-model-store"
+Import libraries and declare variables(model and deploy)
 
-[Required]
-role_arn (string): SageMaker Role ARN for execution of pipeline components
-    Sample: 'arn:aws:iam::${account_id}:role/service-role/AmazonSageMaker-ExecutionRole-${timestemp}'
+![BLERSSI Pipeline](./pictures/notebook-sabe-2.PNG)
 
-execution_mode (string): where the notebook is being run
-    Sample: 'in-cluster' (default), 'local' 
+Define BLERSSI mxnet pipeline function
 
-aws_secret_name (string): AWS secret where IAM creds are stored
-    Sample: 'aws-secret' (default)
+![BLERSSI Pipeline](./pictures/notebook-sabe-3.PNG)
 
-[Optional]
-host (string): KF Pipelines service endpoint
-    Sample:  "http://10.10.10.10:31380/pipeline"
-```
+Create kubeflow experiment with name "BLERSSI-Sagemaker"
+
+![BLERSSI Pipeline](./pictures/notebook-sabe-4.PNG)
+
+### Note :
+
+  Inorder to create the sagemaker endpoint, create inference image push to ecr repo. follow the below steps
+    
+  1. Create docker image from [this](./components/v1/mxnet-byom-inference/container/) location
+  2. push docker image to ecr repo(click [here](https://docs.aws.amazon.com/AmazonECR/latest/userguide/docker-push-ecr-image.html) for details
+
+Set aws region and inference image parameters
+
+![BLERSSI Pipeline](./pictures/notebook-sabe-5.PNG)
+
+Create BLERSSI run and clink run link
+
+![BLERSSI Pipeline](./pictures/notebook-sabe-6.PNG)
+
+
+The BLERSSI Sagemaker pipeline starts execting. 
+Once all the components executed successfuly, check the logs of sagemaker-deploy component to verify endpoint is created.
+
+![BLERSSI Pipeline](./pictures/notebook-sabe-7.PNG)
+
+To verify endpoint in AWS, open AWS sagemaker and check endpoints created succussfully as snapshot given below
+
+![BLERSSI Pipeline](./pictures/aws-sagemaker-endpoint.PNG)
+
+### Run Prediction API
+
+Back to notebook, provide aws credentials
+
+![BLERSSI Pipeline](./pictures/notebook-sabe-8.PNG)
+
+Predicted result will be displayed as below
+
+![BLERSSI Pipeline](./pictures/notebook-sabe-9.PNG)
