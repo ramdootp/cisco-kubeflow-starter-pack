@@ -1,6 +1,4 @@
-# BLERSSI Hybrid Pipeline 
-
-# Cisco UCS 🤝 SageMaker
+# BLERSSI Hybrid Pipeline on Cisco UCS 🤝 SageMaker
 
 ## Pre-requisites
 
