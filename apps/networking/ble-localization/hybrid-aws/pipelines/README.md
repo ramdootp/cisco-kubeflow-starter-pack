@@ -4,10 +4,11 @@
 
 ## Pre-requisites
 
-- [ ] UCS machine with Kubeflow installed
+- [ ] UCS machine with Kubeflow 1.0 installed
 - [ ] AWS account with appropriate permissions
 
-## AWS S3 Create Bucket
+## AWS Setup
+### Create S3 Bucket
 
 Ensure you have the AWS CLI installed. 
 Otherwise, you can use the docker image with the alias set.
@@ -15,7 +16,7 @@ Otherwise, you can use the docker image with the alias set.
     alias aws='docker run --rm -it -v ~/.aws:/root/.aws -v $(pwd):/aws amazon/aws-cli'
     aws s3 mb s3://mxnet-model-store --region us-west-2
 
-## SageMaker permissions
+### Setup SageMaker permissions
 
 In order to run this pipeline, we need to prepare an IAM Role to run Sagemaker jobs. You need this `role_arn` to run a pipeline. Check [here](https://docs.aws.amazon.com/sagemaker/latest/dg/sagemaker-roles.html) for details.
 
@@ -36,14 +37,31 @@ data:
   AWS_SECRET_ACCESS_KEY: YOUR_BASE64_SECRET_ACCESS
 ```
 
-## Run notebook to create pipeline
+## UCS Setup
 
-Ensure you have jupyter lab installed on your local machine. And Kubeflow installed 
+### Retrieve Ingress IP
 
-    git clone https://github.com/CiscoAI/cisco-kubeflow-starter-pack cksp
-    cd cksp
-    cd apps/networking/ble-localization/hybrid-aws/pipelines/
-    
+For installation, we need to know the external IP of the 'istio-ingressgateway' service. This can be retrieved by the following steps.  
+
+```
+kubectl get service -n istio-system istio-ingressgateway
+```
+
+If your service is of LoadBalancer Type, use the 'EXTERNAL-IP' of this service.  
+
+Or else, if your service is of NodePort Type - run the following command:  
+
+```
+kubectl get nodes -o wide
+```
+
+Use either of 'EXTERNAL-IP' or 'INTERNAL-IP' of any of the nodes based on which IP is accessible in your network.  
+
+This IP will be referred to as INGRESS_IP from here on.
+
+### Create Jupyter Notebook Server
+
+Follow the [steps](./../notebook#create--connect-to-jupyter-notebook-server) to create & connect to Jupyter Notebook Server in Kubeflow    
     
 ### Upload Notebook file
 
