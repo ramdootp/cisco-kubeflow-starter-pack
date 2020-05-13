@@ -21,6 +21,6 @@ locations, with each location being manually captured.
 Each location is usually covered by multiple beacons and all those
 measurements were captured.
 
-There are multiple ways of training & deploying the model in Kubeflow for this application:
+Different modes(onprem, hybrid, multi-cloud) of training & deploying model using Kubeflow are possible for this application:
   - [Hybrid - UCS & Sagemaker ](./hybrid-aws)
-  - [Onprem ](./onprem)
+  - [Onprem - UCS ](./onprem)
