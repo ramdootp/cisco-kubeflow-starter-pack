@@ -74,19 +74,19 @@ Create kubeflow experiment with name "BLERSSI-Sagemaker"
   Inorder to create the sagemaker endpoint, create inference image push to ecr repo. follow the below steps
     
   1. Create docker image from [this](./components/v1/mxnet-byom-inference/container/) location
-  2. push docker image to ecr repo(click [here](https://docs.aws.amazon.com/AmazonECR/latest/userguide/docker-push-ecr-image.html) for details
+  2. push docker image to ecr repository.	 click [here](https://docs.aws.amazon.com/AmazonECR/latest/userguide/docker-push-ecr-image.html) for details
 
-Set aws region and inference image parameters
+Set AWS region and inference image parameters
 
 ![BLERSSI Pipeline](./pictures/notebook-sabe-5.PNG)
 
-Create BLERSSI run and clink run link
+Create BLERSSI run and open run link
 
 ![BLERSSI Pipeline](./pictures/notebook-sabe-6.PNG)
 
 
 The BLERSSI Sagemaker pipeline starts execting. 
-Once all the components executed successfuly, check the logs of sagemaker-deploy component to verify endpoint is created.
+Once all the components executed successfully, check the logs of sagemaker-deploy component to verify endpoint is created.
 
 ![BLERSSI Pipeline](./pictures/notebook-sabe-7.PNG)
 
@@ -96,10 +96,12 @@ To verify endpoint in AWS, open AWS sagemaker and check endpoints created succus
 
 ### Run Prediction API
 
-Back to notebook, provide aws credentials
+To predict the output go back to jupyter notebook and start executing other cells
+
+Provide AWS credentials
 
 ![BLERSSI Pipeline](./pictures/notebook-sabe-8.PNG)
 
-Predicted result will be displayed as below
+Predicted result will be displayed
 
 ![BLERSSI Pipeline](./pictures/notebook-sabe-9.PNG)
