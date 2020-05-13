@@ -63,9 +63,9 @@ This IP will be referred to as INGRESS_IP from here on.
 
 Follow the [steps](./../notebook#create--connect-to-jupyter-notebook-server) to create & connect to Jupyter Notebook Server in Kubeflow    
     
-### Upload Notebook file
+### Upload Hybrid Pipeline notebook
 
-Upload [blerssi-aws.ipynb](blerssi-aws.ipynb) file in jupyter notebook
+Upload [blerssi-aws.ipynb](blerssi-aws.ipynb) file to the created Notebook server.
     
 ### Run Pipeline
 
@@ -75,7 +75,7 @@ Set the input parameters for the pipeline in the first cell of the notebook.
 
 ![BLERSSI Pipeline](./pictures/notebook-sabe-1.PNG)
 
-Import libraries and set model and deploy component yaml paths
+Import libraries and set model/deploy component yaml path variables.
 
 ![BLERSSI Pipeline](./pictures/notebook-sabe-2.PNG)
 
@@ -83,17 +83,14 @@ Define BLERSSI mxnet pipeline function
 
 ![BLERSSI Pipeline](./pictures/notebook-sabe-3.PNG)
 
-Create kubeflow experiment with name "BLERSSI-Sagemaker"
+Create experiment with name "BLERSSI-Sagemaker"
 
 ![BLERSSI Pipeline](./pictures/notebook-sabe-4.PNG)
 
-### Note :
+### Note - Building inference image
+   Run build & push script [here](./components/v1/mxnet-byom-inference/container/build_and_push.sh) using your *account credentials*.
 
-  Build your inference docker image and push to your ECR account. Please follow the below steps
-    
-  1. Run the build and push script from [here](./components/v1/mxnet-byom-inference/container/build_and_push.sh) by using your account credentials.
-
-Set AWS region, and inference image to built ECR image
+Set AWS region, and inference image to the built ECR image
 
 ![BLERSSI Pipeline](./pictures/notebook-sabe-5.PNG)
 
@@ -102,7 +99,7 @@ Create BLERSSI run and open run link
 ![BLERSSI Pipeline](./pictures/notebook-sabe-6.PNG)
 
 
-The BLERSSI Sagemaker pipeline starts execting. 
+The BLERSSI Sagemaker pipeline starts executing. 
 Once all the components executed successfully, check the logs of sagemaker-deploy component to verify endpoint is created.
 
 ![BLERSSI Pipeline](./pictures/notebook-sabe-7.PNG)
