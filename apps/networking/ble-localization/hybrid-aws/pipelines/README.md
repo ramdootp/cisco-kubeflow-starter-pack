@@ -57,7 +57,7 @@ Set the input parameters for the pipeline in the first cell of the notebook.
 
 ![BLERSSI Pipeline](./pictures/notebook-sabe-1.PNG)
 
-Import libraries and declare variables(model and deploy)
+Import libraries and set model and deploy component yaml paths
 
 ![BLERSSI Pipeline](./pictures/notebook-sabe-2.PNG)
 
@@ -71,12 +71,11 @@ Create kubeflow experiment with name "BLERSSI-Sagemaker"
 
 ### Note :
 
-  Inorder to create the sagemaker endpoint, create inference image push to ecr repo. follow the below steps
+  Build your inference docker image and push to your ECR account. Please follow the below steps
     
-  1. Create docker image from [this](./components/v1/mxnet-byom-inference/container/) location
-  2. push docker image to ecr repository.	 click [here](https://docs.aws.amazon.com/AmazonECR/latest/userguide/docker-push-ecr-image.html) for details
+  1. Run the build and push script from [here](./components/v1/mxnet-byom-inference/container/build_and_push.sh) by using your account credentials.
 
-Set AWS region and inference image parameters
+Set AWS region, and inference image to built ECR image
 
 ![BLERSSI Pipeline](./pictures/notebook-sabe-5.PNG)
 
@@ -90,7 +89,7 @@ Once all the components executed successfully, check the logs of sagemaker-deplo
 
 ![BLERSSI Pipeline](./pictures/notebook-sabe-7.PNG)
 
-To verify endpoint in AWS, open AWS sagemaker and check endpoints created succussfully as snapshot given below
+To verify endpoint in AWS, open AWS sagemaker and check endpoints created successfully as snapshot given below
 
 ![BLERSSI Pipeline](./pictures/aws-sagemaker-endpoint.PNG)
 
