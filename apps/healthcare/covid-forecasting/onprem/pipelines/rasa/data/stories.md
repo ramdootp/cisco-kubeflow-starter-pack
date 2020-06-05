@@ -1,35 +1,54 @@
-## greet
+## story_01
 * greet
   - utter_greet
+  - requests_source_form
+  - form{"name": "requests_source_form"}
+  - slot{"source": "mohfw"}
+  - form{"name": null}
 
-## thank
-* thank
-  - utter_noworries
-
-## goodbye
-* bye
-  - utter_bye
-
-## covid
 * covid
-  - utter_covid
+  - action_explain
 
-## start
-* start
-  - utter_start
+* covid_cases
+  - action_covid_cases
 
-## spread
-* spread
-  - utter_spread
+* thankyou
+  - action_reset_solts
 
-## symptoms
-* symptoms
-  - utter_symptoms
+## story_02
+* greet
+  - utter_greet
+  - requests_source_form
+  - form{"name": "requests_source_form"}
+  - slot{"source": "mohfw"}
 
-## howdoiknow
-* howdoiknow
-  - utter_howdoiknow
+* stop
+  - utter_ask_continue
 
-## vaccine
-* vaccine
-  - utter_vaccine
+* deny
+  - action_reset_solts
+  - form{"name": null}
+
+## story_03
+* greet
+  - utter_greet
+  - requests_source_form
+  - form{"name": "requests_source_form"}
+  - slot{"source": "mohfw"}
+
+* stop
+  - utter_ask_continue
+
+* affirm
+  - requests_source_form
+  - form{"name": "requests_source_form"}
+
+## story_04
+* covid_cases
+  - action_covid_cases
+
+* stop
+  - utter_ask_continue
+
+* deny
+  - action_reset_solts

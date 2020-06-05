@@ -4,7 +4,9 @@ RUN apt-get update -y && apt-get install --no-install-recommends -y -q \
      ca-certificates python3-dev python3-pip python3-setuptools python3-wheel wget \
 	build-essential libssl-dev libffi-dev
 
-RUN pip3 install rasa-core tornado spacy sklearn_crfsuite tensorflow==1.13.1 matplotlib \
+RUN python3 -m pip install --upgrade pip
+
+RUN pip3 install rasa tornado spacy sklearn_crfsuite matplotlib \
            && python3 -m spacy download en
 
 RUN DEBIAN_FRONTEND=noninteractive apt install python3-tk -y

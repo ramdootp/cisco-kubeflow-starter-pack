@@ -1,19 +1,17 @@
 name: rasa evaluation
 description: rasa evaluation
 inputs:
-  - {name: core model path, type: String, default: '/mnt/models/dialogue'}
-  - {name: nlu model path, type: String, default: '/mnt/models/current/nlu'}
+  - {name: model path, type: String, default: '/mnt/models'}
   - {name: test stories, type: String, default: 'tests/conversation_tests.md'}
-  - {name: output path, type: String, default: 'results'}
+  - {name: out path, type: String, default: 'results'}
 
 
 implementation:
   container:
-    image: docker.io/samba07/rasa-evaluate:0.8
+    image: docker.io/samba07/rasa-evaluate:1.0
     command: ["/bin/e2e-eval.sh"]
     args: [
-      --core, {inputValue: core model path},
-      --nlu, {inputValue: nlu model path},
+      --model, {inputValue: model path},
       --stories, {inputValue: test stories},
-      -o, {inputValue: output path},
+      --out, {inputValue: out path},
     ]

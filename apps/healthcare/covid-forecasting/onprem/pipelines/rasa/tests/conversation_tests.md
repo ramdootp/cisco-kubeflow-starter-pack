@@ -1,43 +1,18 @@
-## greet + goodbye
-* greet: Hi!
-  - utter_greet
-* bye: Bye
-  - utter_bye
+#### This file contains tests to evaluate that your bot behaves as expected.
+#### If you want to learn more, please see the docs: https://rasa.com/docs/rasa/user-guide/testing-your-assistant/
 
-## greet + thanks
-* greet: Hello there
-  - utter_greet
-* thank: thanks a bunch
-  - utter_noworries
+## story_01
+* covid_cases: confirmed cases in indaia
+  - action_covid_cases
 
-## greet + thanks + goodbye
-* greet: Hey
-  - utter_greet
-* thank: thank you
-  - utter_noworries
-* bye: bye bye
-  - utter_bye
+* covid_cases: confirmed cases in world
+  - action_covid_cases
 
-## covid
-* covid: What is corona virus
-  - utter_covid
+* deny: no
+  - action_reset_solts
 
-## start
-* start: When did COVID-19 start?
-  - utter_start
+* stop: ok
+  - utter_ask_continue
 
-## spread
-* spread: How does COVID-19 spread?
-  - utter_spread
-
-## symptoms
-* symptoms: What are the symptoms of COVID-19?
-  - utter_symptoms
-
-## howdoiknow
-* howdoiknow: How do I know if it is COVID-19 or just the common flu?
-  - utter_howdoiknow
-
-## vaccine
-* vaccine: vaccine
-  - utter_vaccine
+* thankyou: bye
+  - action_reset_solts
