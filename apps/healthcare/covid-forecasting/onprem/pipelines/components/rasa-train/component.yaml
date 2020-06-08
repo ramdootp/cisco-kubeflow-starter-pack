@@ -9,7 +9,7 @@ inputs:
 
 implementation:
   container:
-    image: docker.io/samba07/test:rasa-nlu0.2
+    image: docker.io/samba07/rasa-train:0.1
     command: ["/bin/deploy.sh"]
     args: [
       --data, {inputValue: data folder},

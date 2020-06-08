@@ -142,7 +142,7 @@ Chat with your client bot
 
 ![COVID FAQ Pipeline](./pictures/13-create-agent.PNG)
 
-![COVID FAQ Pipeline](./pictures/14-chat-with-your-assistant.PNG)
+![COVID FAQ Pipeline](./pictures/14-chat-with-assistant.PNG)
 
 ## <a name='CleanUp'></a>Clean Up
 

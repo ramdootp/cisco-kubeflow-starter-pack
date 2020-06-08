@@ -11,7 +11,7 @@ inputs:
 
 implementation:
   container:
-    image: docker.io/samba07/test:minioupload0.9
+    image: docker.io/samba07/minio-upload:0.1
     command: ["/bin/deploy.sh"]
     args: [
       --minio_bucket, {inputValue: minio bucket},
