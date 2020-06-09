@@ -26,7 +26,7 @@ To train model and chat with your assistant using kubeflow pipeline through jupy
 
 ## <a name='Prerequisites'></a>Prerequisites
 
-- [ ] Kubernetes Cluster(GKE, AEK, UCS) with Kubeflow 1.0 installed
+- [ ] Kubernetes Cluster(GKE, UCS) with Kubeflow 1.0 installed
 
 
 ## <a name='UCSSetup'></a>UCS Setup
