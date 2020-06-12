@@ -30,7 +30,7 @@ EPOCHS = 25
 BS = 32
 
 
-print("Num GPUs Available: ", len(tf.config.experimental.list_physical_devices('GPU')))
+print("Num GPUs Available: " ,len(tf.config.experimental.list_physical_devices('GPU')))
 
 def main(unused_args):
     
@@ -78,13 +78,39 @@ def main(unused_args):
     for layer in baseModel.layers:
         layer.trainable = False
         
-    num_gpu=4
+    num_gpu= len(tf.config.experimental.list_physical_devices('GPU'))
     parallel_model=multi_gpu_model(model,gpus=num_gpu)
     parallel_model
     
     parallel_model.compile(loss='binary_crossentropy', optimizer='adam', metrics=["accuracy"])
     
     history=parallel_model.fit(trainX,trainY,batch_size=BS,epochs=EPOCHS, validation_split=0.1)
+
+    # make predictions on the testing set
+    print("[INFO] evaluating network...")
+    predIdxs = parallel_model.predict(testX, batch_size=BS)
+
+    # for each image in the testing set we need to find the index of the
+    # label with corresponding largest predicted probability
+    predIdxs = np.argmax(predIdxs, axis=1)
+
+    # show a nicely formatted classification report
+    print(classification_report(testY.argmax(axis=1), predIdxs,target_names=lb.classes_))
+
+    # compute the confusion matrix and and use it to derive the raw
+    # accuracy, sensitivity, and specificity
+    cm = confusion_matrix(testY.argmax(axis=1), predIdxs)
+    total = sum(sum(cm))
+    acc = (cm[0, 0] + cm[1, 1]) / total
+    sensitivity = cm[0, 0] / (cm[0, 0] + cm[0, 1])
+    specificity = cm[1, 1] / (cm[1, 0] + cm[1, 1])
+
+    # show the confusion matrix, accuracy, sensitivity, and specificity
+    # print(cm)
+    print("acc: {:.4f}".format(acc))
+    print("sensitivity: {:.4f}".format(sensitivity))
+    print("specificity: {:.4f}".format(specificity))
+
    
     inputs={"image": t for t in parallel_model.inputs}
     outputs={t.name: t for t in parallel_model.outputs}
