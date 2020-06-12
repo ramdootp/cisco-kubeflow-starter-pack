@@ -65,9 +65,9 @@ Once Notebook Server is created, click on Connect button.
 
 ![TF-BLERSSI Pipeline](pictures/6-connect-notebook1.PNG)
 
-### Upload BLERSSI-Classification.ipynb file
+### Upload BLERSSI-classification.ipynb file
 
-Upload the [BLERSSI-Classification.ipynb](./BLERSSI-Classification.ipynb) to the Notebook Server.
+Upload the [BLERSSI-classification.ipynb](./BLERSSI-classification.ipynb) to the Notebook Server.
 
 ![TF-BLERSSI Pipeline](pictures/7-upload-pipeline-notebook1.PNG)
 
