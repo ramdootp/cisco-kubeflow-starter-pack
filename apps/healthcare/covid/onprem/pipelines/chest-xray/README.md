@@ -26,7 +26,7 @@ Upload Chest-Xray-Dataset-Builder.ipynb file from [here](./Chest-Xray-Dataset-Bu
 
 ### Upload Notebook file for pipeline
 
-Upload Chest-Xray-Pipeline-Deployment.ipynb file from [here](./Chest-Xray-Pipeline-Deployment.ipynb)
+Upload Chest-Xray-Pipeline-Deployment.ipynb file from [here](./Chest-Xrays-Pipeline-Deployment.ipynb)
 
 ### Run Chest Xray Pipeline
 
