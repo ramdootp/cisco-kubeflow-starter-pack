@@ -117,16 +117,19 @@ def main(unused_args):
     MODEL_EXPORT_PATH='/mnt/Model_Covid'
     
     dirFiles = os.listdir(MODEL_EXPORT_PATH)
-    for i in dirFiles:
-        if i=='.ipynb_checkpoints':
-            dirFiles.remove(i)
-            dirFiles.append(0)
-    test_list = [int(i) for i in dirFiles] 
-    modelno = max(test_list)+1
+    if len(dirFiles)>0:
+        for i in dirFiles:
+            if i=='.ipynb_checkpoints':
+                dirFiles.remove(i)
+                dirFiles.append(0)
+        test_list = [int(i) for i in dirFiles] 
+        modelno = max(test_list)+1
+    else:
+        modelno = 1
 
     tf.saved_model.simple_save(
         tf.keras.backend.get_session(),
-        os.path.join(MODEL_EXPORT_PATH, str(modelno)),
+        os.path.join(MODEL_EXPORT_PATH,str(modelno)),
         inputs=inputs,
         outputs={t.name: t for t in parallel_model.outputs})
 
