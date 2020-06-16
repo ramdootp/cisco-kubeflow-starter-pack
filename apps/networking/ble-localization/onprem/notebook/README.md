@@ -71,7 +71,7 @@ Upload the [BLERSSI-classification.ipynb](./BLERSSI-classification.ipynb) to the
 
 ![TF-BLERSSI Pipeline](pictures/7-upload-pipeline-notebook1.PNG)
 
-### Train BLERSSI Model
+### Train BLERSSI model
 
 Open the notebook file and run commands to train & save BLERSSI model.
 
@@ -81,11 +81,11 @@ Once training completes, the model will be stored in the notebook server locally
 
 ![TF-BLERSSI Pipeline](pictures/2-complete-training.PNG)
 
-### Serve BLERSSI Model from chosen model store (MinIO/Workspace Volume) through Kfserving.
+### Serve BLERSSI model from chosen model store (MinIO/Workspace Volume) through Kfserving
 
 ![TF-BLERSSI Pipeline](pictures/4-create-kfserving-blerssi.PNG)
 
-### Predict location for test data using served BLERSSI Model 
+### Predict location for test data using served BLERSSI model 
 
 Change Ingress IP in the curl command to your provided value before executing location prediction.
 
