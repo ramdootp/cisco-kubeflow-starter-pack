@@ -69,21 +69,23 @@ Once Notebook Server is created, click on Connect button.
 
 Upload the [BLERSSI-classification.ipynb](./BLERSSI-classification.ipynb) to the Notebook Server.
 
-![TF-BLERSSI Pipeline](pictures/7-upload-pipeline-notebook1.PNG)
+![TF-BLERSSI Pipeline](pictures/7-upload-pipeline-notebook1.png)
 
 ### Train BLERSSI model
 
 Open the notebook file and run commands to train & save BLERSSI model.
 
-![TF-BLERSSI Pipeline](pictures/1-start-training.PNG)
+![TF-BLERSSI Pipeline](pictures/1-start-training.png)
 
 Once training completes, the model will be stored in the notebook server locally.
 
-![TF-BLERSSI Pipeline](pictures/2-complete-training.PNG)
+![TF-BLERSSI Pipeline](pictures/2-complete-training.png)
 
 ### Serve BLERSSI model from chosen model store (MinIO/Workspace Volume) through Kfserving
 
-![TF-BLERSSI Pipeline](pictures/4-create-kfserving-blerssi.PNG)
+![TF-BLERSSI Pipeline](pictures/4-create-kfserving-blerssi1.png)
+
+![TF-BLERSSI Pipeline](pictures/4-create-kfserving-blerssi2.png)
 
 ### Predict location for test data using served BLERSSI model 
 
