@@ -73,15 +73,15 @@ Upload the [BLERSSI-classification.ipynb](./BLERSSI-classification.ipynb) to the
 
 ### Train BLERSSI Model
 
-Open the notebook file and run first command to train BLERSSI model
+Open the notebook file and run commands to train & save BLERSSI model.
 
 ![TF-BLERSSI Pipeline](pictures/1-start-training.PNG)
 
-Once training completes, the model will be stored in local notebook server
+Once training completes, the model will be stored in the notebook server locally.
 
 ![TF-BLERSSI Pipeline](pictures/2-complete-training.PNG)
 
-### Serve BLERSSI Model from K8s PVC through Kfserving
+### Serve BLERSSI Model from chosen model store (MinIO/Workspace Volume) through Kfserving.
 
 ![TF-BLERSSI Pipeline](pictures/4-create-kfserving-blerssi.PNG)
 
