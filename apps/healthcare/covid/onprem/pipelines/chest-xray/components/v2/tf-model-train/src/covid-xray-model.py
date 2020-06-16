@@ -35,9 +35,13 @@ print("Num GPUs Available: " ,len(tf.config.experimental.list_physical_devices('
 def main(unused_args):
     
     print("[INFO] loading images...")
-    imagePaths = list(paths.list_images("/opt/data/datasets"))
+    imagePaths = list(paths.list_images("/mnt/dataset"))
     data = []
     labels = []
+
+    if not os.path.exists('/mnt/Model_Covid'):
+        os.makedirs('/mnt/Model_Covid')
+
 
     for imagePath in imagePaths:
         label = imagePath.split(os.path.sep)[-2]
