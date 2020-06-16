@@ -1,8 +1,8 @@
-# Chest Xray Predicton using Pipelines
+# Chest-Xray Predicton using pipelines
 
 ## What we're going to build
 
-Train and serve Chest Xray model using KF pipeline, and predict xray result from Jupyter notebook.
+Train and serve chest-xray model using KF pipeline, and predict xray result from Jupyter notebook.
 
 ![TF-Chest Xray Pipeline](pictures/0-xray-graph.PNG)
 
@@ -22,15 +22,15 @@ Follow the [steps](./../../notebook#create--connect-to-jupyter-notebook-server) 
 
 ### Upload Notebook file to generate dataset
 
-Upload Chest-Xray-Dataset-Builder.ipynb file from [here](./Chest-Xray-Dataset-Builder.ipynb)
+Upload chest-xray-dataset-builder.ipynb file from [here](./chest-xray-dataset-builder.ipynb)
 
 ### Upload Notebook file for pipeline
 
-Upload Chest-Xray-Pipeline-Deployment.ipynb file from [here](./Chest-Xrays-Pipeline-Deployment.ipynb)
+Upload chest-xray-pipeline-deployment.ipynb file from [here](./chest-xray-pipeline-deployment.ipynb)
 
 ### Run Chest Xray Pipeline
 
-Open the Chest-Xray-Pipeline-Deployment.ipynb file and run pipeline
+Open the chest-xray-pipeline-deployment.ipynb file and run pipeline
 
 Clone git repo
 
@@ -44,7 +44,7 @@ Run Pipeline
 
 ![TF-Chest Xray Pipeline](pictures/2-run-pipeline.PNG)
 
-Once Chest Xray Pipeline is executed Experiment and Run link will generate and displayed as output
+Once chest-xray pipeline is executed Experiment and Run link will generate and displayed as output
 
 ![TF-Chest Xray Pipeline](pictures/3-exp-link.PNG)
 
@@ -53,10 +53,10 @@ Click on latest experiment which is created
 ![TF-Chest Xray Pipeline](pictures/4-pipeline-created.PNG)
 
 Pipeline components execution can be viewed as below
-Logs of Chest Xray Training Component
+Logs of chest-xray training component
 ![TF-Chest Xray Pipeline](pictures/6-pipeline-completed.PNG)
 
-Logs of Serving Component
+Logs of serving component
 
 ![TF-Chest Xray Pipeline](pictures/3-serving.PNG)
 
