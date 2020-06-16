@@ -2,10 +2,10 @@
 
 ## What we're going to do
 
-Train & save a BLERSSI location model from kubeflow jupyter notebook.
+Train & save a BLERSSI location model from Kubeflow Jupyter notebook.
 Then, serve and predict using the saved model.
 
-### Infrastructure Used
+### Infrastructure used
 
 * Cisco UCS - C240M5 and C480ML
 
@@ -31,7 +31,7 @@ Use either of 'EXTERNAL-IP' or 'INTERNAL-IP' of any of the nodes based on which 
 
 This IP will be referred to as INGRESS_IP from here on.
 
-### Create & Connect to Jupyter Notebook Server
+### Create & connect to Jupyter Notebook server
 
 You can access Kubeflow Dashboard using the Ingress IP and _31380_ port. For example, http://<INGRESS_IP:31380>
 
@@ -51,13 +51,13 @@ Provide Notebook Server name and select notebook image appropriately as below
 
 ![TF-BLERSSI Pipeline](pictures/create-notebook-1.PNG)
 
-Create new Workspace Volume
+Create new Workspace volume
 
 ![TF-BLERSSI Pipeline](pictures/create-notebook-2.PNG)
 
 If you are creating GPU attached notebook then choose number of GPUs and GPU Vendor as *NVIDIA*. 
 
-Click Launch Button
+Click Launch button
 
 ![TF-BLERSSI Pipeline](pictures/create-notebook-3.PNG)
 
