@@ -20,9 +20,11 @@ To install NFS server follow [steps](../../../../../networking/ble-localization/
 
 Follow the [steps](./../../notebook#create--connect-to-jupyter-notebook-server)  to create Jupyter Notebook in Kubeflow
 
-### Upload Notebook file to generate dataset
+### Notebook to generate dataset and store it in kubeflow minio
 
-Upload chest-xray-dataset-builder.ipynb file from [here](./chest-xray-dataset-builder.ipynb)
+Upload dataset-builder-minio-store.ipynb file from [here](./dataset-builder-minio-store.ipynb) and run all the cells to download and generate image dataset and store it in kubeflow minio.
+
+This step should run only once
 
 ### Upload Notebook file for pipeline
 
