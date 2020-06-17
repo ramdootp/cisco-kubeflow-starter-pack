@@ -18,7 +18,7 @@
 	/vscode-markdown-toc-config -->
 <!-- /vscode-markdown-toc -->
 
-# <a name='COVID19'></a>**COVID-19**
+# <a name='covid19'></a>COVID-19
 
 ## <a name='Introduction'></a>Introduction
 COVID-19 ( Novel Corona Virus) has been declared as a global health emergency by WHO,
@@ -40,9 +40,9 @@ The dataset involved here is publicly available at [COVID Train & Test Data](htt
 
  Model Training is implemented using Keras & LSTM ( Long Short Term Memory) architecture.
 
-     * LSTM are a special kind of RNN(Recurrent Neural Network), capable of learning long-term dependencies.
+   * LSTM are a special kind of RNN(Recurrent Neural Network), capable of learning long-term dependencies.
 
-     * LSTMs have internal mechanisms called gates that can learn which data in a sequence is important to keep or throw away. By doing that, it can pass relevant information down the long chain of sequences to make predictions.
+   * LSTMs have internal mechanisms called gates that can learn which data in a sequence is important to keep or throw away. By doing that, it can pass relevant information down the long chain of sequences to make predictions.
 
 ### <a name='ForecastImplementation'></a>*Implementation*
 
