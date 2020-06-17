@@ -1,0 +1,22 @@
+name: Train Covid Xray TF Model
+description: Trains the Network model that uses Tensorflow
+inputs:
+  - {name: TF model dir, type: String, default: '/mnt/model', description: 'GCS path or local directory.'}
+  - {name: TF export dir, type: String, default: '/mnt/Model_Covid', description: 'GCS path or local directory to export model'}
+  - {name: TF model type, type: String, default: 'CNN', description: 'Tensorflow model type for training.'}
+  - {name: TF train steps, type: Integer, default: 200, description: 'The number of training steps to perform.'}
+  - {name: TF batch size, type: Integer, default: 100, description: 'The number of batch size during training'}
+  - {name: TF learning rate, type: Float, default: 0.01, description: 'Learning rate for training.'}
+
+implementation:
+  container:
+    image: docker.io/premkarthi/covid-image-train-model:v2
+    command: ["python", "/opt/covid-xray-model.py"]
+    args: [
+      --tf-model-dir, {inputValue: TF model dir},
+      --tf-export-dir, {inputValue: TF export dir},
+      --tf-model-type, {inputValue: TF model type},
+      --tf-train-steps, {inputValue: TF train steps},
+      --tf-batch-size, {inputValue: TF batch size},
+      --tf-learning-rate, {inputValue: TF learning rate},
+    ]
