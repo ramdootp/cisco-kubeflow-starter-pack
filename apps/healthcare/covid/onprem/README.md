@@ -1,4 +1,4 @@
-# COVID-19 Dataset on UCS infrastructure
+# COVID-19 models on UCS infrastructure
 
 COVID-19 ( Novel Corona Virus) has been declared as a global health emergency by WHO,
 as it has been taking it's toll in many of the countries across the globe.
