@@ -1,24 +1,21 @@
 # COVID-19 models on UCS infrastructure
 
 <!-- vscode-markdown-toc -->
-* [COVID-19](#covid19)
-     * [Introduction](#Introduction)
-     * [COVID-19 Forecasting](#COVIDForecasting)
-       * [Dataset](#Dataset)
-       * [Model](#Model)
-       * [Implementation](#ForecastImplementation)
-     * [COVID-19 FAQ Bot](#COVIDFaqBot)
-       * [Implementation](#FAQImplementation)
-     * [Chest X-ray Diagnosis](#chestXrayDiagnosis)
-       * [Implementation](#DiagnosisImplementation) 
+* [Introduction](#Introduction)
+* [COVID-19 Forecasting](#COVIDForecasting)
+     * [Dataset](#Dataset)
+     * [Model](#Model)
+     * [Implementation](#ForecastImplementation)
+* [COVID-19 FAQ Bot](#COVIDFaqBot)
+     * [Implementation](#FAQImplementation)
+* [Chest X-ray Diagnosis](#chestXrayDiagnosis)
+     * [Implementation](#DiagnosisImplementation) 
 
 <!-- vscode-markdown-toc-config
 	numbering=false
 	autoSave=true
 	/vscode-markdown-toc-config -->
 <!-- /vscode-markdown-toc -->
-
-# <a name='covid19'></a>COVID-19
 
 ## <a name='Introduction'></a>Introduction
 COVID-19 ( Novel Corona Virus) has been declared as a global health emergency by WHO,
