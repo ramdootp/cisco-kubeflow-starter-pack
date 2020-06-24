@@ -127,7 +127,7 @@ Create the InferenceService using KFServing client SDK
 
 Replace docker image with your docker image
 
-![BLERSSI KNATIVE METRICS](./pictures/replace-docker-image.PNG)
+![BLERSSI KNATIVE METRICS](./pictures/replace-docker-image.png)
 
 Define InferenceService
 
