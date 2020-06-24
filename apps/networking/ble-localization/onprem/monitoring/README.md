@@ -10,7 +10,7 @@
     * [Create Jupyter Notebook Server](#CreateJupyterNotebookServer)
     * [Upload Notebook](#UploadNotebook)
     * [Run Pipeline](#RunPipeline)
-* [AccessingMetrics](#AccessingMetrics)
+* [Accessing Metrics](#AccessingMetrics)
     * [Prometheus](#Prometheus)
     * [Grafana](#Grafana)
 * [CleanUp](#CleanUp)
