@@ -2,17 +2,17 @@
 
 <!-- vscode-markdown-toc -->
 * [What we're going to build](#Whatweregoingtobuild)
-        * [Infrastructure Used](#InfrastructureUsed)
+    * [Infrastructure Used](#InfrastructureUsed)
 * [Prerequisites](#Prerequisites)
 * [UCS Setup](#UCSSetup)
-        * [Retrieve Ingress IP](#RetrieveIngressIP)
+    * [Retrieve Ingress IP](#RetrieveIngressIP)
 * [Pipeline Workflow](#PipelineWorkflow)
-        * [Create Jupyter Notebook Server](#CreateJupyterNotebookServer)
-        * [Upload Notebook](#UploadNotebook)
-        * [Run Pipeline](#RunPipeline)
+    * [Create Jupyter Notebook Server](#CreateJupyterNotebookServer)
+    * [Upload Notebook](#UploadNotebook)
+    * [Run Pipeline](#RunPipeline)
 * [AccessingMetrics](#AccessingMetrics)
-        * [Prometheus](#Prometheus)
-        * [Grafana](#Grafana)
+    * [Prometheus](#Prometheus)
+    * [Grafana](#Grafana)
 * [CleanUp](#CleanUp)
 
 <!-- vscode-markdown-toc-config
@@ -28,6 +28,10 @@ Train & save a BLERSSI location model from Kubeflow Jupyter notebook. Then, serv
 ### <a name='InfrastructureUsed'></a>Infrastructure Used
 
 * Cisco UCS - C240
+
+## <a name='Prerequisites'></a>Prerequisites
+
+- [ ] Kubernetes Cluster(GKE, UCS) with Kubeflow 1.0 installed
 
 ## <a name='UCSSetup'></a>UCS Setup
 
@@ -63,11 +67,11 @@ Follow the [steps](./../notebook#create--connect-to-jupyter-notebook-server) to 
 
 ### <a name='UploadNotebook'></a>Upload Notebook
 
-Upload [knative-monitoring.ipynb](knative-monitoring.ipynb) file to the created Notebook server.
+Upload [monitoring.ipynb](monitoring.ipynb) file to the created Notebook server.
 
 ### <a name='RunPipeline'></a>Run Pipeline
 
-Open the [knative-monitoring.ipynb](knative-monitoring.ipynb) file and run pipeline
+Open the [monitoring.ipynb](monitoring.ipynb) file and run pipeline
 
 Clone git repo
 
