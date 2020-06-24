@@ -6,10 +6,10 @@
 * [Prerequisites](#Prerequisites)
 * [UCS Setup](#UCSSetup)
     * [Retrieve Ingress IP](#RetrieveIngressIP)
-* [Pipeline Workflow](#PipelineWorkflow)
+* [Notebook Workflow](#NotebookWorkflow)
     * [Create Jupyter Notebook Server](#CreateJupyterNotebookServer)
     * [Upload Notebook](#UploadNotebook)
-    * [Run Pipeline](#RunPipeline)
+    * [Run Notebook](#RunNotebook)
 * [Accessing Metrics](#AccessingMetrics)
     * [Prometheus](#Prometheus)
     * [Grafana](#Grafana)
@@ -23,7 +23,7 @@
 
 ## <a name='Whatweregoingtobuild'></a>What we're going to build
 
-Train & save a BLERSSI location model from Kubeflow Jupyter notebook. Then, serve and predict using the saved model and push model metrics into prometheus
+Train & save a BLERSSI location model from Kubeflow Jupyter notebook. Then, serve and predict using the saved model and push model i/p and o/p metrics into prometheus
 
 ### <a name='InfrastructureUsed'></a>Infrastructure Used
 
@@ -57,8 +57,8 @@ Use either of 'EXTERNAL-IP' or 'INTERNAL-IP' of any of the nodes based on which 
 
 This IP will be referred to as INGRESS_IP from here on.
 
-## <a name='PipelineWorkflow'></a>Pipeline Workflow
-Once the setup is complete, the following are the steps in the pipeline
+## <a name='NotebookWorkflow'></a>Notebook Workflow
+Once the setup is complete, the following are the steps in the Notebook
 workflow.
 
 ### <a name='CreateJupyterNotebookServer'></a>Create Jupyter Notebook Server
@@ -69,9 +69,9 @@ Follow the [steps](./../notebook#create--connect-to-jupyter-notebook-server) to 
 
 Upload [monitoring.ipynb](monitoring.ipynb) file to the created Notebook server.
 
-### <a name='RunPipeline'></a>Run Pipeline
+### <a name='RunNotebook'></a>Run Notebook
 
-Open the [monitoring.ipynb](monitoring.ipynb) file and run pipeline
+Open the [monitoring.ipynb](monitoring.ipynb) file and run Notebook
 
 Clone git repo
 
@@ -121,9 +121,13 @@ Get Prometheus Pushgateway cluster IP to push metrics
 
 ![BLERSSI KNATIVE METRICS](./pictures/10-get-prom-pushgateway-ip.PNG)
 
-To [build the docker image](./model-server) and push into your Docker Hub. It will be used when creating the InferenceService
+To add your [metrics](./model-server/model.py#L115), [build](./model-server/Dockerfile) the docker image and push into your Docker Hub. It will be used when creating the InferenceService
 
 Create the InferenceService using KFServing client SDK
+
+Replace docker image with your docker image
+
+![BLERSSI KNATIVE METRICS](./pictures/replace-docker-image.PNG)
 
 Define InferenceService
 

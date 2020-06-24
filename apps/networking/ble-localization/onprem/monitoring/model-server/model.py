@@ -113,6 +113,11 @@ class KFServing(kfserving.KFModel):
         return request['instances']
 
     def postprocess(self, request):
+        """
+        Add your own metrics and push metrics to prometheus pushgateway
+        Here we are reading data from 'kfserving_metrics.csv' file and generating metrics
+        The Pushgateway allows ephemeral and batch jobs to expose their metrics to Prometheus
+        """
 
         obj=Upload()
         obj.create_bucket(args.bucket_name)
@@ -133,21 +138,19 @@ class KFServing(kfserving.KFModel):
             data_frames=pd.read_csv('kfserving_metrics.csv')
             data_frame=data_frames.drop(['class_id','probabilities'], axis=1)
             data_frame=data_frame/-200
-            metrics={"blerssi_input_data_mean":data_frame.mean(),
-                    "blerssi_input_data_min":data_frame.min(),
-                    "blerssi_input_data_std":data_frame.std(),
-                    "blerssi_input_data_median":data_frame.median()
-                    }
+            metrics={}
+            for feature in fieldnames[:-2]:
+                metrics["blerssi_input_data_%s_mean"%feature]=data_frame.mean().to_dict()[feature]
+                metrics["blerssi_input_data_%s_min"%feature]=data_frame.min().to_dict()[feature]
+                metrics["blerssi_input_data_%s_std"%feature]=data_frame.std().to_dict()[feature]
+                metrics["blerssi_input_data_%s_median"%feature]=data_frame.median().to_dict()[feature]
 
-            for k,v in metrics.items():
-                #self.push_metrics(k,v)
-                pass
-            class_id_metrics={"blerssi_class_id_mean":data_frames['class_id'].mean(),
-                              "blerssi_class_id_min":data_frames['class_id'].min(),
-                              "blerssi_class_id_std":data_frames['class_id'].std()
-                              }
+            metrics["blerssi_class_id_mean"]=data_frames['class_id'].mean()
+            metrics["blerssi_class_id_min"]=data_frames['class_id'].min()
+            metrics["blerssi_class_id_std"]=data_frames['class_id'].std()
+
             registry = CollectorRegistry()
-            for k,v in class_id_metrics.items():
+            for k,v in metrics.items():
                 self.push_metrics(k,v, registry)
 
         obj.upload_file(args.bucket_name, 'kfserving_metrics.csv', 'kfserving_metrics.csv')
