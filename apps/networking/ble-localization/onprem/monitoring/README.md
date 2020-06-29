@@ -125,7 +125,7 @@ To add your [metrics](./model-server/model.py#L115), [build](./model-server/Dock
 
 Inference Logger
 
-Create a message dumper KNaive service to print out CloudEvents it receives
+Create a message dumper knative service to print out CloudEvents it receives
 
 ![BLERSSI KNATIVE METRICS](./pictures/inference-logger.PNG)
 
