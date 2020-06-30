@@ -123,6 +123,12 @@ Get Prometheus Pushgateway cluster IP to push metrics
 
 To add your [metrics](./model-server/model.py#L115), [build](./model-server/Dockerfile) the docker image and push into your Docker Hub. It will be used when creating the InferenceService
 
+Inference Logger
+
+Create a message dumper knative service to print out CloudEvents it receives
+
+![BLERSSI KNATIVE METRICS](./pictures/inference-logger.PNG)
+
 Create the InferenceService using KFServing client SDK
 
 Replace docker image with your docker image
@@ -144,6 +150,10 @@ Predict location for test data using served BLERSSI Model
 ![BLERSSI KNATIVE METRICS](./pictures/14-test-data.PNG)
 
 ![BLERSSI KNATIVE METRICS](./pictures/15-prediction.PNG)
+
+Check the logs of the message dumper
+
+![BLERSSI KNATIVE METRICS](./pictures/inference-request-response-logs.PNG)
 
 ## <a name='AccessingMetrics'></a>Accessing Metrics
 

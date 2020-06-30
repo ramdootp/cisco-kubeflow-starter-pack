@@ -196,6 +196,8 @@ if __name__ == "__main__":
     parser = argparse.ArgumentParser()
     parser.add_argument('--workers', default=1, type=int,
                     help='The number of works to fork')
+    parser.add_argument('--http_port', default=8081, type=int,
+                    help='The HTTP Port listened to by the model server.')
     parser.add_argument('--pushgateway', help='Prometheus pushgateway to push metrics')
     parser.add_argument('--storage_uri', help='storage uri for your model')
     parser.add_argument('--out_dir', help='out dir')
@@ -203,4 +205,4 @@ if __name__ == "__main__":
     args, _ = parser.parse_known_args()
     model = KFServing("blerssi-model")
     model.load()
-    kfserving.KFServer(workers=args.workers).start([model])
+    kfserving.KFServer(workers=args.workers,http_port=args.http_port).start([model])
