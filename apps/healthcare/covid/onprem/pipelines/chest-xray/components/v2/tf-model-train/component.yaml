@@ -10,7 +10,7 @@ inputs:
 
 implementation:
   container:
-    image: docker.io/premkarthi/covid-image-train-model:v2
+    image: docker.io/edward1723/covid-image-train-model:0.2
     command: ["python", "/opt/covid-xray-model.py"]
     args: [
       --tf-model-dir, {inputValue: TF model dir},
