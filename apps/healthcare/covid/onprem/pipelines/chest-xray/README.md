@@ -84,7 +84,7 @@ Enable custom visualizations within Kubeflow Pipelines.
           - name: ALLOW_CUSTOM_VISUALIZATIONS
             value: true
 
-    ![Custom environement config](pictures/custom_env_config.png)
+    ![Custom environement config](pictures/source_custom_python_code.png)
    
  - If you already have Kubeflow Pipelines deployed within a cluster, you can edit the frontend deployment YAML to specify that custom visualizations are allowed in the same way described above. Details about updating deployments can be found in the Kubernetes documentation about updating a deployment.
 
@@ -109,10 +109,6 @@ Open the details of a run.
 Select a component and click on **Artifacts** tab.
 
 Select type as **CUSTOM** from type drop down list.
-
-Provide the **source** file path or path pattern of data.
-
-   ![Custom python code](pictures/source_custom_python_code.png)
    
 Provide the custom visualization code and click on **Generate Visualization**.
 
