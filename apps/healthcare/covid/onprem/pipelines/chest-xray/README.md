@@ -71,7 +71,7 @@ Python based visualizations are a new method of generating visualizations within
 
    - Successfull completion of above kubeflow pipeline  
    
- ### Patches
+ ### Add environment variable
    
  - If you have not yet deployed Kubeflow Pipelines to your cluster, you can edit the frontend deployment YAML file to include the following YAML that specifies that custom visualizations are allowed via environment variables.
 
@@ -79,16 +79,17 @@ Python based visualizations are a new method of generating visualizations within
           - name: ALLOW_CUSTOM_VISUALIZATIONS
             value: true
 
+### Add Patches
  - If you already have Kubeflow Pipelines deployed within a cluster, you can edit the frontend deployment YAML to specify that custom visualizations are allowed in the same way described above. Details about updating deployments can be found in the Kubernetes documentation about updating a deployment.
 
         kubectl patch deployment ml-pipeline-ui --patch '{"spec": {"template": {"spec": {"containers": [{"name": "ml-pipeline-ui", "env":[{"name": "ALLOW_CUSTOM_VISUALIZATIONS", "value": "true"}]}]}}}}' -n kubeflow
 
-
+### Update Pipeline Visualization Image
  - Update ml-pipeline-visualizationserver deployment with latest docker image
 
         kubectl patch deployment ml-pipeline-ml-pipeline-visualizationserver --patch '{"spec": {"template": {"spec": {"containers": [{"name": "ml-pipeline-visualizationserver", "image": "gcr.io/ml-pipeline/visualization-server:0.1.35"}]}}}}' -n kubeflow
 
-
+ ### Install libraries in Pipeline Visualization pod
  - Install require python packages and libraries in ml-pipeline-visualizationserver.
 
         Usage: kubectl exec -it <<POD-NAME>> -n <<NAMESPACE>> bash
