@@ -19,7 +19,8 @@ import argparse
 import cv2
 import os
 
-
+import pandas as pd
+from tensorflow.keras import backend as K
 from tensorflow.keras.utils import multi_gpu_model
 import tensorflow as tf
 tf.keras.backend.set_learning_phase(0) 
@@ -32,6 +33,24 @@ BS = 32
 
 print("Num GPUs Available: " ,len(tf.config.experimental.list_physical_devices('GPU')))
 
+
+def recall_m(y_true, y_pred):
+    true_positives = K.sum(K.round(K.clip(y_true * y_pred, 0, 1)))
+    possible_positives = K.sum(K.round(K.clip(y_true, 0, 1)))
+    recall = true_positives / (possible_positives + K.epsilon())
+    return recall
+
+def precision_m(y_true, y_pred):
+    true_positives = K.sum(K.round(K.clip(y_true * y_pred, 0, 1)))
+    predicted_positives = K.sum(K.round(K.clip(y_pred, 0, 1)))
+    precision = true_positives / (predicted_positives + K.epsilon())
+    return precision
+
+def f1_m(y_true, y_pred):
+    precision = precision_m(y_true, y_pred)
+    recall = recall_m(y_true, y_pred)
+    return 2*((precision*recall)/(precision+recall+K.epsilon()))
+
 def main(unused_args):
     
     print("[INFO] loading images...")
@@ -41,7 +60,6 @@ def main(unused_args):
 
     if not os.path.exists('/mnt/Model_Covid'):
         os.makedirs('/mnt/Model_Covid')
-
 
     for imagePath in imagePaths:
         label = imagePath.split(os.path.sep)[-2]
@@ -86,9 +104,9 @@ def main(unused_args):
     parallel_model=multi_gpu_model(model,gpus=num_gpu)
     parallel_model
     
-    parallel_model.compile(loss='binary_crossentropy', optimizer='adam', metrics=["accuracy"])
+    parallel_model.compile(loss='binary_crossentropy', optimizer='adam', metrics=['acc',f1_m,precision_m, recall_m])
     
-    history=parallel_model.fit(trainX,trainY,batch_size=BS,epochs=EPOCHS, validation_split=0.1)
+    history=parallel_model.fit(trainX,trainY,batch_size=BS,epochs=25, validation_split=0.1)
 
     # make predictions on the testing set
     print("[INFO] evaluating network...")
@@ -116,6 +134,8 @@ def main(unused_args):
     print("specificity: {:.4f}".format(specificity))
 
    
+
+    '''Model save - tensorflow pb format'''
     inputs={"image": t for t in parallel_model.inputs}
     outputs={t.name: t for t in parallel_model.outputs}
     MODEL_EXPORT_PATH='/mnt/Model_Covid'
@@ -136,6 +156,23 @@ def main(unused_args):
         os.path.join(MODEL_EXPORT_PATH,str(modelno)),
         inputs=inputs,
         outputs={t.name: t for t in parallel_model.outputs})
+    
+    
+    '''Writing values to Visualization'''
+    df1 = pd.DataFrame({'actual': testY.argmax(axis=1),'pred': predIdxs})
+    df = pd.DataFrame({'loss':history.history['loss'],
+                       'val_loss':history.history['val_loss'],'acc':history.history['acc'],'val_acc':history.history['val_acc'],
+                      'f1_m':history.history['f1_m'],'val_f1_m':history.history['val_f1_m'],'precision_m':history.history['precision_m'],
+                      'val_precision_m':history.history['val_precision_m']})
+
+    # Create a Pandas Excel writer using XlsxWriter as the engine.
+    writer = pd.ExcelWriter('/mnt/xray_source.xlsx', engine='xlsxwriter')
+    # Convert the dataframe to an XlsxWriter Excel object.
+    # df2 = df1+df
+    df1.to_excel(writer, sheet_name='Sheet1')
+    df.to_excel(writer, sheet_name='Sheet2')
+    # Close the Pandas Excel writer and output the Excel file.
+    writer.save()
 
 
 if __name__ == "__main__":
