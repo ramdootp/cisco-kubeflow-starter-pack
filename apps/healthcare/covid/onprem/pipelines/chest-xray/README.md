@@ -96,7 +96,9 @@ Python based visualizations are a new method of generating visualizations within
         pip3 install matplotlib
         pip3 install pandas
         pip install xlrd==1.0.0
-   
+
+## Generate and View Visualization 
+
 Open the details of a run.
 
 Select a component and click on **Artifacts** tab.
@@ -105,7 +107,7 @@ Select type as **CUSTOM** from type drop down list.
 
 ![Custom environement config](pictures/source_custom_python_code.png)
    
-Provide the custom visualization code and click on **Generate Visualization**.
+Paste custom visualization code and click on **Generate Visualization**.
 
                 from sklearn.metrics import precision_recall_curve
                 from sklearn.metrics import roc_auc_score
