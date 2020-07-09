@@ -155,7 +155,7 @@ Paste custom visualization code and click on **Generate Visualization**.
                 
 View generated visualization by scrolling down.
 
-   ![COVID Plot](pictures/covid_plot.PNG)
+   ![COVID Plot](pictures/network_plot.PNG)
    
-   ![COVID Plot](pictures/covid_plot1.PNG)
+   ![COVID Plot](pictures/network_plot1.PNG)
 
