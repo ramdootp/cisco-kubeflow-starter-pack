@@ -6,7 +6,6 @@ import kfserving
 import tensorflow as tf
 from kfserving import storage
 
-
 _GCS_PREFIX = "gs://"
 _S3_PREFIX = "s3://"
 
@@ -39,12 +38,9 @@ class KFServing(kfserving.KFModel):
         input={'b3001': [], 'b3002': [], 'b3003': [], 'b3004': [], 'b3005': [], 'b3006': [], 'b3007': [], 'b3008': [], 'b3009': [], 'b3010': [], 'b3011': [], 'b3012': [], 'b3013': []}
 
         X=request
-        if len(X)==13 and not type(X[0]) ==list:
-            if type(X)==np.ndarray and len(X)==2:
-                X=X.tolist()[-1]
+        if np.ndim(X) != 2:
             for i in range(len(X)):
                 input[feature_cols[i]].append(X[i])
-
         else:
             for i in range(len(X)):
                 for j in range(len(X[i])):
@@ -59,13 +55,16 @@ class KFServing(kfserving.KFModel):
         class_ids=[]
         for id in output_dict["class_ids"]:
             class_ids.append(id[0])
-        return {"predictions":np.array(class_ids).tolist()}
+        #return {"predictions":np.array(class_ids).tolist()}
+        return {"predictions":output_dict["probabilities"].tolist()}
 
 if __name__ == "__main__":
     parser = argparse.ArgumentParser()
+    parser.add_argument('--http_port', default=8080, type=int,
+                    help='The HTTP Port listened to by the model server.')
     parser.add_argument('--storage_uri', help='storage uri for your model')
     parser.add_argument('--out_dir', help='out dir')
     args, _ = parser.parse_known_args()
     model = KFServing("blerssi-model")
     model.load()
-    kfserving.KFServer().start([model])
+    kfserving.KFServer(http_port=args.http_port).start([model])
