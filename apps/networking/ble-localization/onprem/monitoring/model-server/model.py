@@ -170,7 +170,7 @@ class KFServing(kfserving.KFModel):
 
         input={}
         for i in range(len(X)):
-            input.update({self.feature_col[i]:[X[1]]})
+            input.update({self.feature_col[i]:[X[i]]})
 
         for dir in os.listdir(args.out_dir):
             if re.match('[0-9]',dir):
@@ -194,8 +194,6 @@ class KFServing(kfserving.KFModel):
 
 if __name__ == "__main__":
     parser = argparse.ArgumentParser()
-    parser.add_argument('--workers', default=1, type=int,
-                    help='The number of works to fork')
     parser.add_argument('--http_port', default=8081, type=int,
                     help='The HTTP Port listened to by the model server.')
     parser.add_argument('--pushgateway', help='Prometheus pushgateway to push metrics')
@@ -205,4 +203,4 @@ if __name__ == "__main__":
     args, _ = parser.parse_known_args()
     model = KFServing("blerssi-model")
     model.load()
-    kfserving.KFServer(workers=args.workers,http_port=args.http_port).start([model])
+    kfserving.KFServer(http_port=args.http_port).start([model])
