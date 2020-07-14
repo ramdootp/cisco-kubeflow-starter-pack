@@ -152,6 +152,8 @@ def main():
     learningrate = parameter['currentOptimalTrial']['parameterAssignments'][1]['value']
 
     print(timestamp)
+    if not os.path.exists('/mnt/Model_Blerssi'):
+        os.makedirs('/mnt/Model_Blerssi')
     filename = "/mnt/Model_Blerssi/hpv-"+timestamp+".txt"
     f = open(filename, "w")
     f.write(batchsize + "\n")
