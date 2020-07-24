@@ -1,4 +1,4 @@
-# Explaination for BLERSSI Location Prediction
+# Explanation for BLERSSI Location Prediction
 
 <!-- vscode-markdown-toc -->
 * [What we're going to build](#Whatweregoingtobuild)
