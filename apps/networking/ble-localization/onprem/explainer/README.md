@@ -142,7 +142,7 @@ To [build](./model-server/Dockerfile) the docker image and push into your Docker
 
 ![BLERSSI EXPLAINER](./pictures/20-explanation.PNG)
 
-### <a name='CleanUp'></a>Clean Up
+## <a name='CleanUp'></a>Clean Up
 
 ### Delete the InferenceService
 
