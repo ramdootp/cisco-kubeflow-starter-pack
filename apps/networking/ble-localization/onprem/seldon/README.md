@@ -4,8 +4,8 @@
 * [What we're going to build](#Whatweregoingtobuild)
     * [Infrastructure Used](#InfrastructureUsed)
 * [Prerequisites](#Prerequisites)
-    * [Update Seldon Core Operator Crds](#UpdateSeldonCoreOperatorCrds)
 * [UCS Setup](#UCSSetup)
+    * [Update Seldon Core Operator Crds](#UpdateSeldonCoreOperatorCrds)
     * [Retrieve Ingress IP](#RetrieveIngressIP)
 * [Notebook Workflow](#NotebookWorkflow)
     * [Create Jupyter Notebook Server](#CreateJupyterNotebookServer)
@@ -31,6 +31,10 @@ Train & save a BLERSSI location model from Kubeflow Jupyter notebook. Then, serv
 
 - [ ] Kubernetes Cluster(UCS) with Kubeflow 1.0 installed
 
+## <a name='UCSSetup'></a>UCS Setup
+
+To install Kubeflow, follow the instructions [here](../../../../../install)
+
 ### <a name='UpdateSeldonCoreOperatorCrds'></a>Update Seldon Core Operator Crds
 
 If you are using kubeflow 1.0, then update latest seldon core operator crds.
@@ -55,10 +59,6 @@ git clone -b v1.1-branch https://github.com/kubeflow/manifests.git
 USAGE: kustomize build <<path-to-seldon-core-operator-base>> | kubectl apply -f -
 EXAMPLE: kustomize build manifests/seldon/seldon-core-operator/base/ | kubectl apply -f -
 ```
-
-## <a name='UCSSetup'></a>UCS Setup
-
-To install Kubeflow, follow the instructions [here](../../../../../install)
 
 ### <a name='RetrieveIngressIP'></a>Retrieve Ingress IP
 
@@ -142,14 +142,14 @@ Open the [blerssi-seldon.ipynb](blerssi-seldon.ipynb) file and run Notebook
  
 ### Save Explainer file
 
-![BLERSSI SELDON](./pictures/11-save-explainer-file.PNG)
+![BLERSSI SELDON](./pictures/11-save-explainer.PNG)
 
 ### Create a gateway
 Create a gateway called kubeflow-gateway in current namespace
 
 ![BLERSSI SELDON](./pictures/12-create-gateway.PNG)
 
-To [build](./model-server/Dockerfile) the docker image and push into your Docker Hub. It will be used when creating the InferenceService
+To [build](./model-server) the docker image and push into your Docker Hub. It will be used when creating the InferenceService
 
 ### Adding a new inference server
 The list of available inference servers in Seldon Core is maintained in the **seldon-config** configmap, which lives in the same namespace as your Seldon Core operator. In particular, the **predictor_servers** key holds the JSON config for each inference server.
