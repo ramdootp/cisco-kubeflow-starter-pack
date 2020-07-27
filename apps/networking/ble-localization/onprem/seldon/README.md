@@ -149,7 +149,7 @@ Create a gateway called kubeflow-gateway in current namespace
 
 ![BLERSSI SELDON](./pictures/12-create-gateway.PNG)
 
-To [build](./model-server) the docker image and push into your Docker Hub. It will be used when creating the InferenceService
+To [build](./model-server) the docker image and push into your Docker Hub. It will be used when adding a new inference server
 
 ### Adding a new inference server
 The list of available inference servers in Seldon Core is maintained in the **seldon-config** configmap, which lives in the same namespace as your Seldon Core operator. In particular, the **predictor_servers** key holds the JSON config for each inference server.
