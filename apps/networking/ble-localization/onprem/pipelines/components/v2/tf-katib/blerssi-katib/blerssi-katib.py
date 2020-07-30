@@ -5,16 +5,8 @@ from __future__ import absolute_import
 from __future__ import division
 
 import argparse
-import json
-import sys
-import tensorflow as tf
-import pandas as pd
-import numpy as np
-import shutil
 import os
-from sklearn.preprocessing import OneHotEncoder
 import time
-import calendar
 from kubernetes import client as k8s_client
 from kubernetes.client import rest as k8s_rest
 from kubernetes import config as k8s_config
@@ -29,29 +21,9 @@ from kubeflow.katib import *
 def parse_arguments():
   parser = argparse.ArgumentParser()
 
-  parser.add_argument('--tf-model-dir',
+  parser.add_argument('--image',
                       type=str,
-                      help='GCS path or local directory.')
-  parser.add_argument('--tf-export-dir',
-                      type=str,
-                      default='rssi/',
-                      help='GCS path or local directory to export model')
-  parser.add_argument('--tf-model-type',
-                      type=str,
-                      default='DNN',
-                      help='Tensorflow model type for training.')
-  parser.add_argument('--tf-train-steps',
-                      type=int,
-                      default=10000,
-                      help='The number of training steps to perform.')
-  parser.add_argument('--tf-batch-size',
-                      type=int,
-                      default=100,
-                      help='The number of batch size during training')
-  parser.add_argument('--tf-learning-rate',
-                      type=float,
-                      default=0.01,
-                      help='Learning rate for training.')
+                      help='Training image')
   parser.add_argument('--timestamp',
                       type=str,
                       help='Timestamp value')
@@ -61,9 +33,7 @@ def parse_arguments():
 
 def main():
     print("Hello World")
-
     args = parse_arguments()
-
 
     algorithmsettings = V1alpha3AlgorithmSetting(
         name= "random_state",
@@ -89,7 +59,6 @@ def main():
         type = "maximize")
 
     # Parameters
-
     feasible_space_batchsize = V1alpha3FeasibleSpace(list = ["16","32","48","64"])
     feasible_space_lr = V1alpha3FeasibleSpace(min = "0.01", max = "0.03")
 
@@ -107,7 +76,7 @@ def main():
 
     # Trialtemplate
     go_template = V1alpha3GoTemplate(
-        raw_template =   "apiVersion: \"batch/v1\"\nkind: Job\nmetadata:\n  name: {{.Trial}}\n  namespace: {{.NameSpace}}\nspec:\n  template:\n    spec:\n      containers:\n      - name: {{.Trial}}\n        image: docker.io/poornimadevii/blerssi-train:v1\n        command:\n        - \"python3\"\n        - \"/opt/blerssi-model.py\"\n        {{- with .HyperParameters}}\n        {{- range .}}\n        - \"{{.Name}}={{.Value}}\"\n        {{- end}}\n        {{- end}}\n      restartPolicy: Never"
+        raw_template =   "apiVersion: \"batch/v1\"\nkind: Job\nmetadata:\n  name: {{.Trial}}\n  namespace: {{.NameSpace}}\nspec:\n  template:\n    spec:\n      containers:\n      - name: {{.Trial}}\n        image: %s\n        command:\n        - \"python3\"\n        - \"/opt/blerssi-model.py\"\n        {{- with .HyperParameters}}\n        {{- range .}}\n        - \"{{.Name}}={{.Value}}\"\n        {{- end}}\n        {{- end}}\n      restartPolicy: Never"%args.image
         )
 
 
@@ -160,8 +129,5 @@ def main():
     f.write(learningrate)
     f.close()
 
-
-
 if __name__=="__main__":
     main()
-
