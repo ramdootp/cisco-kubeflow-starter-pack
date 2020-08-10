@@ -1,4 +1,3 @@
-
 from tensorflow.keras.preprocessing.image import ImageDataGenerator
 from tensorflow.keras.applications import VGG16
 from tensorflow.keras.layers import AveragePooling2D, AveragePooling3D
@@ -19,9 +18,9 @@ import argparse
 import cv2
 import os
 import time
+import datetime
 import pandas as pd
 from tensorflow.keras import backend as K
-#from tensorflow.keras.utils import multi_gpu_model
 import tensorflow as tf
 import argparse
 import os
@@ -33,15 +32,7 @@ from kubernetes import config as k8s_config
 from kubeflow.fairing.cloud.k8s import MinioUploader
 
 tf.keras.backend.set_learning_phase(0)
-
 tf.logging.set_verbosity(tf.logging.INFO)
-# initialize the initial learning rate, number of epochs to train for,
-# and batch size
-INIT_LR = 1e-3
-EPOCHS = 25
-BS = 32
-
-
 k8s_config.load_incluster_config()
 api_client = k8s_client.CoreV1Api()
 minio_service_endpoint = None
@@ -92,15 +83,11 @@ if not os.path.exists('/mnt/katib'):
 with ZipFile('katib_dataset.zip', 'r') as zipObj:
    zipObj.extractall('/mnt/katib')
 
-#print("Num GPUs Available: ", len(tf.config.experimental.list_physical_devices('GPU')))
-
-
 def recall_m(y_true, y_pred):
     true_positives = K.sum(K.round(K.clip(y_true * y_pred, 0, 1)))
     possible_positives = K.sum(K.round(K.clip(y_true, 0, 1)))
     recall = true_positives / (possible_positives + K.epsilon())
     return recall
-
 
 def precision_m(y_true, y_pred):
     true_positives = K.sum(K.round(K.clip(y_true * y_pred, 0, 1)))
@@ -108,15 +95,14 @@ def precision_m(y_true, y_pred):
     precision = true_positives / (predicted_positives + K.epsilon())
     return precision
 
-
 def f1_m(y_true, y_pred):
     precision = precision_m(y_true, y_pred)
     recall = recall_m(y_true, y_pred)
     return 2 * ((precision * recall) / (precision + recall + K.epsilon()))
 
 def parse_arguments():
-    parser = argparse.ArgumentParser()
 
+    parser = argparse.ArgumentParser()
     parser.add_argument('--batchsize',
                       type=int,
                       default=32,
@@ -133,23 +119,18 @@ def parse_arguments():
     args, unparsed = parser.parse_known_args()
     return args
 
-
 def main(unused_args):
     
-    print("1")
     tf.logging.set_verbosity(tf.logging.INFO)
     args = parse_arguments()
-
     print("[INFO] loading images...")
     imagePaths = list(paths.list_images("/mnt/katib"))
-    print(imagePaths)
     data = []
     labels = []
 
     if not os.path.exists('/mnt/Model_Covid'):
         os.makedirs('/mnt/Model_Covid')
     
-
     for imagePath in imagePaths:
         label = imagePath.split(os.path.sep)[-2]
         image = cv2.imread(imagePath)
@@ -160,22 +141,16 @@ def main(unused_args):
    
     data = np.array(data) / 255.0
     labels = np.array(labels)
-    print(data)
-    print("_______________________________________")
-    print(labels)
     lb = LabelBinarizer()
     labels = lb.fit_transform(labels)
     labels = to_categorical(labels)
     
     (trainX, testX, trainY, testY) = train_test_split(data, labels, test_size=.2)
-    print(trainX.shape)
-    print(trainY.shape)
+    print(trainX.shape,trainY.shape)
 
-    # load the VGG16 network, ensuring the head FC layer sets are left
-    # off
+    # load the VGG16 network, ensuring the head FC layer sets are left off
     baseModel = VGG16(weights="imagenet", include_top=False,
                       input_tensor=Input(shape=(224, 224, 3)))
-
     # construct the head of the model that will be placed on top of the
     # the base model
     headModel = baseModel.output
@@ -184,33 +159,18 @@ def main(unused_args):
     headModel = Dense(64, activation="relu")(headModel)
     headModel = Dropout(0.5)(headModel)
     headModel = Dense(2, activation="softmax")(headModel)
-
     # place the head FC model on top of the base model (this will become
     # the actual model we will train)
     model = Model(inputs=baseModel.input, outputs=headModel)
-
     # loop over all layers in the base model and freeze them so they will
     # *not* be updated during the first training process
     for layer in baseModel.layers:
         layer.trainable = False
 
-   # num_gpu = len(tf.config.experimental.list_physical_devices('GPU'))
-    #print(num_gpu)
-    #parallel_model = multi_gpu_model(model, gpus=2)
-    import time
     ts = time.time()
-    import datetime
     st = datetime.datetime.fromtimestamp(ts).strftime('%Y-%m-%d %H:%M:%S')
-    print(st)
-    print("alloted 2") 
-    print("BS")
-    print(args.batchsize)
-    print("LR")
-    print(args.learningrate)
     model.compile(loss='binary_crossentropy', optimizer=tf.train.AdamOptimizer(learning_rate=args.learningrate,beta1=args.beta1, beta2=args.beta2), metrics=['acc',f1_m,precision_m, recall_m])
-    
-    his = model.fit(trainX,trainY,batch_size=args.batchsize,epochs=5, validation_split=0.1)
-    
+    history = model.fit(trainX,trainY,batch_size=args.batchsize,epochs=5, validation_split=0.1)    
     evaluation = model.evaluate(testX,testY)
     loss = evaluation[0]
     accuracy = evaluation[1]
@@ -219,9 +179,6 @@ def main(unused_args):
     print('loss='+str(loss))  
     print('accuracy=',accuracy)
     print('loss=',loss) 
-    
 
-    
 if __name__ == "__main__":
     tf.app.run()
-

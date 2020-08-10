@@ -1,4 +1,3 @@
-
 from __future__ import absolute_import
 from __future__ import division
 from __future__ import print_function
@@ -49,6 +48,7 @@ def parse_arguments():
   return args
 
 def main():
+    
     args = parse_arguments()
     algorithmsettings = V1alpha3AlgorithmSetting(
         name= "random_state",
@@ -88,12 +88,12 @@ def main():
         name = "--learningrate",
         parameter_type ="double"
         )]
-  
+
     # Trialtemplate
     go_template = V1alpha3GoTemplate(
-        raw_template = "apiVersion: batch/v1\nkind: Job\nmetadata:\n  name: {{.Trial}}\n  namespace: {{.NameSpace}}\nspec:\n  template:\n    spec:\n      containers:\n      - name: {{.Trial}}\n        image: %s\n        command:\n        - \"python\"\n        - \"/opt/covid-xray-katib.py\"\n        {{- with .HyperParameters}}\n        {{- range .}}\n        - \"{{.Name}}={{.Value}}\"\n        {{- end}}\n        {{- end}}\n        resources:\n          limits:\n            nvidia.com/gpu: 1\n        volumeMounts:\n          - mountPath: \"/mnt\"\n            name: \"nfsvolume\"\n      volumes:\n         - name: \"nfsvolume\"\n           persistentVolumeClaim:\n             claimName: \"nfs1\"\n      restartPolicy: Never"%args.image
+        raw_template = "apiVersion: batch/v1\nkind: Job\nmetadata:\n  name: {{.Trial}}\n  namespace: {{.NameSpace}}\nspec:\n  template:\n    spec:\n      containers:\n      - name: {{.Trial}}\n        image: %s\n        command:\n        - \"python\"\n        - \"/opt/covid-xray-katib.py\"\n        {{- with .HyperParameters}}\n        {{- range .}}\n        - \"{{.Name}}={{.Value}}\"\n        {{- end}}\n        {{- end}}\n        resources:\n          limits:\n            nvidia.com/gpu: 4\n        volumeMounts:\n          - mountPath: \"/mnt\"\n            name: \"nfsvolume\"\n      volumes:\n         - name: \"nfsvolume\"\n           persistentVolumeClaim:\n             claimName: \"nfs1\"\n      restartPolicy: Never"%args.image
         )
-    
+
     trial_template= V1alpha3TrialTemplate(go_template=go_template)
     timestamp = str(args.timestamp)
     experimentname = "chest-xray-"+timestamp
@@ -102,6 +102,7 @@ def main():
         api_version="kubeflow.org/v1alpha3",
         kind="Experiment",
         metadata=V1ObjectMeta(name=experimentname,namespace="anonymous"),
+
         spec=V1alpha3ExperimentSpec(
              algorithm = algorithm,
              max_failed_trial_count=3,
@@ -112,21 +113,22 @@ def main():
              trial_template = trial_template
         )
     )
+
     namespace = "anonymous"
     kclient = kc.KatibClient()
     kclient.create_experiment(experiment, namespace=namespace)
+
     result = kclient.get_experiment_status(name=experimentname, namespace=namespace)
- 
     while result != "Succeeded" and  result != "Failed" :
         time.sleep(5)
         result = kclient.get_experiment_status(name=experimentname, namespace=namespace)
         print(result)
-        
+
     kclient.get_optimal_hyperparmeters(name=experimentname,namespace=namespace)
     parameter = kclient.get_optimal_hyperparmeters(name=experimentname, namespace=namespace)
     batchsize = parameter['currentOptimalTrial']['parameterAssignments'][0]['value']
     learningrate = parameter['currentOptimalTrial']['parameterAssignments'][1]['value']
-    
+
     if not os.path.exists('/mnt/Model_Covid'):
         os.makedirs('/mnt/Model_Covid')
     filename = "/mnt/Model_Covid/hpv-"+timestamp+".txt"
@@ -134,6 +136,6 @@ def main():
     f.write(batchsize + "\n")
     f.write(learningrate)
     f.close()
-    
+
 if __name__=="__main__":
     main()

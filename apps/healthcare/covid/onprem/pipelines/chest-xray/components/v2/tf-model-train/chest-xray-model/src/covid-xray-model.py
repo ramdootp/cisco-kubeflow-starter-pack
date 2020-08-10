@@ -22,13 +22,7 @@ import pandas as pd
 from tensorflow.keras import backend as K
 from tensorflow.keras.utils import multi_gpu_model
 import tensorflow as tf
-
 tf.keras.backend.set_learning_phase(0)
-# initialize the initial learning rate, number of epochs to train for,
-# and batch size
-INIT_LR = 1e-3
-EPOCHS = 25
-BS = 32
 
 print("Num GPUs Available: ", len(tf.config.experimental.list_physical_devices('GPU')))
 
@@ -50,7 +44,7 @@ def f1_m(y_true, y_pred):
     return 2 * ((precision * recall) / (precision + recall + K.epsilon()))
 
 def parse_arguments():
-    
+
     parser = argparse.ArgumentParser()
     parser.add_argument('--epochs',
                         type=int,
@@ -78,6 +72,7 @@ def main(unused_args):
     
     tf.logging.set_verbosity(tf.logging.INFO)
     args = parse_arguments()
+    
     timestamp = str(args.timestamp)
     filename = "/mnt/Model_Covid/hpv-"+timestamp+".txt"
     f = open(filename, "r")
@@ -104,13 +99,13 @@ def main(unused_args):
     lb = LabelBinarizer()
     labels = lb.fit_transform(labels)
     labels = to_categorical(labels)
-  
+    
     (trainX, testX, trainY, testY) = train_test_split(data, labels, test_size=.2)
     print(trainX.shape,trainY.shape)
-    # load the VGG16 network, ensuring the head FC layer sets are left
-    # off
+    # load the VGG16 network, ensuring the head FC layer sets are left off
     baseModel = VGG16(weights="imagenet", include_top=False,
                       input_tensor=Input(shape=(224, 224, 3)))
+
     # construct the head of the model that will be placed on top of the
     # the base model
     headModel = baseModel.output
@@ -128,7 +123,6 @@ def main(unused_args):
         layer.trainable = False
 
     num_gpu = len(tf.config.experimental.list_physical_devices('GPU'))
-    print(num_gpu)
     parallel_model = multi_gpu_model(model, gpus=num_gpu)
     parallel_model.compile(loss='binary_crossentropy', optimizer=tf.train.AdamOptimizer(learning_rate=learningrate), metrics=['acc',f1_m,precision_m, recall_m])
     
@@ -150,6 +144,7 @@ def main(unused_args):
     specificity = cm[1, 1] / (cm[1, 0] + cm[1, 1])
     # show the confusion matrix, accuracy, sensitivity, and specificity
     print("acc: {:.4f}, sensitivity: {:.4f}, specificity: {:.4f}".format(acc,sensitivity,specificity))
+
     '''Model save - tensorflow pb format'''
     inputs = {"image": t for t in parallel_model.inputs}
     outputs = {t.name: t for t in parallel_model.outputs}
@@ -159,8 +154,6 @@ def main(unused_args):
     modelno = 0
     if len(dirFiles) > 0:
         for i in dirFiles:
-            print('files')
-            print(i)
             if i == '.ipynb_checkpoints':
                 dirFiles.remove(i)
                 dirFiles.append(0)
@@ -189,10 +182,11 @@ def main(unused_args):
     # Create a Pandas Excel writer using XlsxWriter as the engine.
     writer = pd.ExcelWriter('/mnt/xray_source.xlsx', engine='xlsxwriter')
     # Convert the dataframe to an XlsxWriter Excel object.
+    # df2 = df1+df
     df1.to_excel(writer, sheet_name='Sheet1')
     df.to_excel(writer, sheet_name='Sheet2')
     # Close the Pandas Excel writer and output the Excel file.
     writer.save()
-    
+
 if __name__ == "__main__":
     tf.app.run()

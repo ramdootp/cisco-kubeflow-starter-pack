@@ -7,7 +7,6 @@ RUN pip install kubernetes==10.0.1 kubeflow-fairing  --no-cache-dir
 RUN pip install minio --no-cache-dir
 RUN pip install pandas opencv-python pydicom pillow imutils xlsxwriter matplotlib dill
 ADD src/covid-xray-katib.py  /opt/covid-xray-katib.py
-ADD src/data/datasets /opt/data/datasets
-RUN chmod +x /opt/covid-xray-katib.py  /opt/data/datasets
+RUN chmod +x /opt/covid-xray-katib.py
 WORKDIR /opt/
 CMD python covid-xray-katib.py
