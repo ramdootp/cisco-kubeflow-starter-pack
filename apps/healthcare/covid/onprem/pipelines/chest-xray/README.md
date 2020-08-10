@@ -55,10 +55,14 @@ Click on latest experiment which is created
 ![TF-Chest Xray Pipeline](pictures/4-pipeline-created.PNG)
 
 Pipeline components execution can be viewed as below
+
+Logs of chest-xray katib hyperparameter component
+![TF-Chest Xray Pipeline](pictures/katib.PNG)
+
 Logs of chest-xray training component
 ![TF-Chest Xray Pipeline](pictures/6-pipeline-completed.PNG)
 
-Logs of serving component
+Logs of chest-xray serving component
 
 ![TF-Chest Xray Pipeline](pictures/3-serving.PNG)
 
