@@ -44,15 +44,15 @@ To train, serve using Kubeflow pipeline and perform prediction for client reques
 
 Create S3 Bucket
 
-![AWS-S3-bucket](pictures/2-create-bucket.PNG)
+![AWS-S3-bucket](pictures/1-create-bucket.PNG)
 
 ## <a name='UCSSetup'></a>**UCS Setup**
 
-### <a name='InstallKubeflow'></a>***Install Kubeflow***
+### <a name='InstallKubeflow'></a>**Install Kubeflow**
 
 To install Kubeflow, follow the instructions from [here]()
 
-### <a name='InstallNFS'></a>***Install NFS server (if not installed)***
+### <a name='InstallNFS'></a>**Install NFS server (if not installed)**
 
 To install NFS server follow steps below.
 
@@ -81,11 +81,11 @@ This IP will be referred to as INGRESS_IP from here on.
 Follow the [steps](./../install/) to install NFS server, PVs and PVCs.
 
 
-### <a name='CreateJupyterNotebookServer'></a>***Create Jupyter Notebook Server***
+### <a name='CreateJupyterNotebookServer'></a>**Create Jupyter Notebook Server**
 
 Follow the [steps](./../notebook#create--connect-to-jupyter-notebook-server) to create & connect to Jupyter Notebook Server in Kubeflow
 
-### <a name='KubernetesSecret'></a>***Create Kubernetes secret***
+### <a name='KubernetesSecret'></a>**Create Kubernetes secret**
 
 AWS doesn't create secret for AWS_ACCESS_KEY_ID, AWS_SECRET_ACCESS_KEY along with kubeflow deployment and it requires users to manually create credential secret with proper permissions.
 
@@ -130,7 +130,7 @@ Verify whether secret is created
 kubectl get secrets -n kubeflow | grep aws-secret
 ```
 
-### <a name='CreateLabel'></a>***Create Label for Kubeflow namespace***
+### <a name='CreateLabel'></a>**Create Label for Kubeflow namespace**
 
 A namespace label 'serving.kubeflow.org/inferenceservice=enabled' is set to Kubeflow namespace for serving
 
@@ -138,25 +138,25 @@ A namespace label 'serving.kubeflow.org/inferenceservice=enabled' is set to Kube
 kubectl label namespace seldon serving.kubeflow.org/inferenceservice=enabled
 ```
 
-### <a name='UploadNotebookfile'></a>***Upload Object Detection Pipeline Notebook file***
+### <a name='UploadNotebookfile'></a>**Upload Object Detection Pipeline Notebook file**
 
 Upload [object-detection-pipeline-deployment.ipynb](object-detection-pipeline-deployment.ipynb)
 
-### <a name='RunPipeline'></a>***Run Object Detection Pipeline***
+### <a name='RunPipeline'></a>**Run Object Detection Pipeline**
 
 Open the Object-Detection-Pipeline-Deployment.ipynb file and start executing cells
 
 Clone required git repositories
 
-![Object Detection Pipeline](pictures/2-clone.PNG)
+![Object Detection Pipeline](pictures/2-clone.png)
 
 Load Components
 
-![Object Detection Pipeline](pictures/3-load-components.PNG)
+![Object Detection Pipeline](pictures/3-load-components.png)
 
 Create volume claims & volume mounts
 
-![Object Detection Pipeline](pictures/4-load-components.PNG)
+![Object Detection Pipeline](pictures/4-vol-mounts.png)
 
 ## **Note**:
 
@@ -168,11 +168,11 @@ To [build](./components/v2/model-server) the docker image and push into your Doc
 
 Define pipeline function
 
-![Object Detection Pipeline](pictures/5-pipeline-func.PNG)
+![Object Detection Pipeline](pictures/5-pipeline-func.png)
 
 Create experiment
 
-![Object Detection Pipeline](pictures/6-create-experiment.PNG)
+![Object Detection Pipeline](pictures/6-create-experiment.png)
 
 ## **Double-check**:
 
@@ -180,7 +180,7 @@ Create experiment
 
 Verify whether the required configuration files ( with .cfg & .data extensions) & dataset files are present in the desired locations within S3 bucket as shown below, for successful training and subsequent inferencing
 
-![AWS-S3-bucket](pictures/7-bucket-folders.PNG)
+![AWS-S3-bucket](pictures/7-bucket-folders.png)
 
 ![AWS-S3-bucket](pictures/8-s3-cfg.PNG)
 
@@ -190,13 +190,13 @@ Verify whether the required configuration files ( with .cfg & .data extensions) 
 
 Run pipeline
 
-![Object Detection Pipeline](pictures/11-run-pipeline.PNG)
+![Object Detection Pipeline](pictures/11-run-pipeline.png)
 
 Once the pipeline is executed, a run link will be generated and displayed as output.
 
 Click on the latest experiment which is created 
 
-![Object Detection Pipeline](pictures/12-experiment.PNG)
+![Object Detection Pipeline](pictures/12-experiment.png)
 
 Pipeline components execution can be viewed as below
 
@@ -223,12 +223,12 @@ Logs of kfserving component
 
 Create an inferenceservice & check whether it is ready
 
-![Object Detection Pipeline](pictures/18-inferenceservice.PNG)
+![Object Detection Pipeline](pictures/18-inferenceservice.png)
 
 Define functions for dataset pre-processing & prediction
 
-![Object Detection Pipeline](pictures/19-predict-func.PNG)
+![Object Detection Pipeline](pictures/19-predict-func.png)
 
 Make prediction
 
-![Object Detection Pipeline](pictures/20-predict.PNG)
+![Object Detection Pipeline](pictures/20-predict.png)
