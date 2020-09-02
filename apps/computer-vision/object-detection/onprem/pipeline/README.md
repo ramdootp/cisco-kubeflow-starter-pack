@@ -50,7 +50,7 @@ Create S3 Bucket
 
 ### <a name='InstallKubeflow'></a>**Install Kubeflow**
 
-To install Kubeflow, follow the instructions from [here]()
+To install Kubeflow, follow the instructions from [here](../../../../../install)
 
 ### <a name='InstallNFS'></a>**Install NFS server (if not installed)**
 
